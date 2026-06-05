@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fantasy Surfer — El Salvador Pro 2026</title>
-<style>:root{--font-ui:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI Variable Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--font-mono:ui-monospace,"SF Mono","Fira Code",Menlo,Monaco,"Courier New",monospace;}
+<style>:root{--font-ui:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;--font-mono:ui-monospace,"SF Mono","Fira Code",Menlo,Monaco,"Courier New",monospace;}
 @media(max-width:400px){
   
   .tbar-btns .btn{flex:1;min-width:80px;text-align:center;justify-content:center;font-size:9px;padding:6px 8px}
@@ -361,8 +361,8 @@ body.light .gtab.active{background:rgba(0,0,0,.06)}
 .live-dot{width:5px;height:5px;border-radius:50%;background:#4CAF50;animation:pulse 1.4s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
-</style>
-<style>
+
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#0a0a0a;--bg2:#111;--bg3:#181818;
@@ -371,8 +371,8 @@ body.light .gtab.active{background:rgba(0,0,0,.06)}
   --warn:#c0392b;--warn-bg:rgba(192,57,43,.08);--warn-border:rgba(192,57,43,.2);
   --ok-bg:rgba(45,106,79,.08);--ok-border:rgba(45,106,79,.2);
   --r:10px;--r-btn:8px;--r-pill:20px;
-  --font-ui:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI Variable Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  --font-mono:ui-monospace,"SF Mono","Fira Code","JetBrains Mono",Menlo,Monaco,Consolas,monospace;
+  --font-ui:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --font-mono:'SF Mono','JetBrains Mono','Fira Mono','Courier New',monospace;
 }
 body.light{
   --bg:#f4f4f0;--bg2:#ffffff;--bg3:#ebebeb;
@@ -1178,6 +1178,7 @@ body.ocean .tbest-section{border-color:rgba(100,180,210,.3)}
 #panel-picks .collapsible-body.collapsed{max-height:0!important;opacity:0;overflow:hidden;pointer-events:none}
 .ptable tbody tr[data-action="pick"]{cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 </style>
+
 </head>
 <body>
 <span id="live-update-badge" style="display:none;align-items:center;gap:5px;font-size:8px;font-family:var(--font-mono);letter-spacing:.08em;padding:3px 8px;border-radius:20px;background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.25)"></span><button class="theme-btn" id="theme-btn"><span class="icon">◑</span><span id="theme-lbl">LIGHT</span></button>
@@ -1297,7 +1298,7 @@ body.ocean .tbest-section{border-color:rgba(100,180,210,.3)}
   </div>
 
   <!-- ★ LIVE EVENT HERO CTA ★ -->
-  <div class="live-cta-card" onclick="openEvent('elsalvador')" style="cursor:pointer">
+  <div class="live-cta-card" data-action="open-event" data-evid="elsalvador" onclick="openEvent('elsalvador')" style="cursor:pointer">
     <div class="live-cta-bar"></div>
     <div class="live-cta-inner">
       <div class="live-cta-left">
@@ -1810,6 +1811,7 @@ body.ocean .tbest-section{border-color:rgba(100,180,210,.3)}
 </div>
 
 <script>
+
 const _mem={};
 const _storageOK=(()=>{try{localStorage.setItem('_t','1');localStorage.removeItem('_t');return true;}catch(e){return false;}})();
 const safeStorage={getItem(k){return _storageOK?localStorage.getItem(k):(_mem[k]||null);},setItem(k,v){if(_storageOK){try{localStorage.setItem(k,v);}catch(e){}} _mem[k]=String(v);},removeItem(k){if(_storageOK){try{localStorage.removeItem(k);}catch(e){}} delete _mem[k];}};
@@ -1848,7 +1850,7 @@ const MEN={
     {name:"Rio Waida",nat:"INA",fp:151.47,avg:37.87,ex:4,mhs:15.20,ahs:13.22,hw:42.86,heat:"R2H5",hg:"r2h5",st:"Regular",esl:"★★★",eslN:55},
   ],
   C:[
-    {name:"Matt McGillivray",nat:"RSA",fp:null,avg:null,ex:0,mhs:0.00,ahs:0.00,hw:null,heat:"R1H1",hg:"r1h1",st:"Regular",seed:"R1 Qualify",esl:"★★★",eslN:52},
+    {name:"Matt McGillivray",nat:"RSA",fp:null,avg:null,ex:null,mhs:null,ahs:null,hw:null,heat:"R1H1",hg:"r1h1",st:"Regular",esl:"★★★",eslN:52},
     {name:"Alan Cleland",nat:"IRL",fp:88.93,avg:22.23,ex:4,mhs:10.50,ahs:7.50,hw:0.00,heat:"R2H16",hg:"r2h16",st:"Regular",esl:"★★★☆",eslN:62},
     {name:"Bryan Perez",nat:"SLV",fp:null,avg:null,ex:null,mhs:null,ahs:null,hw:null,heat:"R1H3",hg:"r1h3",st:"Regular",esl:"★★★★",eslN:75},
     {name:"Eli Hanneman",nat:"HAW",fp:96.53,avg:24.13,ex:4,mhs:13.50,ahs:10.42,hw:20.00,heat:"R1H3",hg:"r1h3",st:"Regular",esl:"★★",eslN:30},
@@ -1856,6 +1858,7 @@ const MEN={
     {name:"Oscar Berry",nat:"AUS",fp:43.30,avg:10.83,ex:4,mhs:13.33,ahs:10.83,hw:0.00,heat:"R1H4",hg:"r1h4",st:"Regular",esl:"★★",eslN:25},
     {name:"Ramzi Boukhiam",nat:"MAR",fp:63.49,avg:15.87,ex:4,mhs:13.83,ahs:12.70,hw:20.00,heat:"R1H1",hg:"r1h1",st:"Regular",esl:"★",eslN:12},
     {name:"Seth Moniz",nat:"HAW",fp:98.20,avg:24.55,ex:4,mhs:12.10,ahs:10.75,hw:20.00,heat:"R1H4",hg:"r1h4",st:"Regular",esl:"★★★",eslN:50},
+    {name:"Melvin Ayala",nat:"SLV",fp:null,avg:null,ex:null,mhs:null,ahs:null,hw:null,heat:"R1H2",hg:"r1h2",st:"Goofy",seed:"R1 Qualify",esl:"★★★★",eslN:78},
   ]
 };
 const WOMEN={
@@ -1877,88 +1880,132 @@ const WOMEN={
     {name:"Nadia Erostarbe",nat:"ESP",fp:102.18,avg:34.06,ex:3,mhs:15.67,ahs:13.06,hw:57.14,seed:"R1 Qualify",esl:"★★",eslN:30,hg:"w_r1h3",heat:"R1H3",st:"Goofy"},
     {name:"Stephanie Gilmore",nat:"AUS",fp:112.47,avg:37.49,ex:3,mhs:17.33,ahs:12.90,hw:71.43,seed:"R1 Qualify",esl:"★★★★★",eslN:85,hg:"w_r1h5",heat:"R1H5",st:"Regular"},
     {name:"Tyler Wright",nat:"AUS",fp:84.33,avg:28.11,ex:3,mhs:13.76,ahs:9.15,hw:25.00,seed:"R1 Qualify",esl:"★★★",eslN:48,hg:"w_r1h4",heat:"R1H4",st:"Regular"},
+    {name:"Vahine Fierro",nat:"PYF",fp:81.17,avg:27.06,ex:3,mhs:16.50,ahs:11.83,hw:40.00,seed:"R1 Qualify",esl:"★★☆",eslN:38,hg:"w_r1h1",heat:"R1H1",st:"Goofy"},
   ],
   C:[
-    {name:"Vahine Fierro",nat:"PYF",fp:81.17,avg:27.06,ex:3,mhs:16.50,ahs:11.83,hw:40.00,seed:"R1 Qualify",esl:"★★☆",eslN:38,hg:"w_r1h1",heat:"R1H1",st:"Goofy"},
     {name:"Anat Lelior",nat:"ISR",fp:44.65,avg:14.88,ex:3,mhs:13.83,ahs:9.70,hw:25.00,seed:"R1 Qualify",esl:"★",eslN:10,hg:"w_r1h5",heat:"R1H5",st:"Goofy"},
     {name:"Bella Kenworthy",nat:"USA",fp:44.20,avg:14.73,ex:3,mhs:11.60,ahs:10.59,hw:0.00,seed:"R1 Qualify",esl:"★★",eslN:22,hg:"w_r1h6",heat:"R1H6",st:"Regular"},
     {name:"Brisa Hennessy",nat:"CRC",fp:42.27,avg:14.09,ex:3,mhs:12.10,ahs:10.18,hw:0.00,seed:"R1 Qualify",esl:"★★★",eslN:45,hg:"w_r1h7",heat:"R1H7",st:"Regular"},
     {name:"Francisca Veselko",nat:"NZL",fp:59.97,avg:19.99,ex:3,mhs:12.67,ahs:9.94,hw:40.00,seed:"R1 Qualify",esl:"★",eslN:12,hg:"w_r1h3",heat:"R1H3",st:"Regular"},
-    {name:"Kirra Pinkerton",nat:"USA",fp:null,avg:null,ex:null,mhs:null,ahs:null,hw:null,seed:"R1 Qualify",esl:"★★",eslN:20,hg:"w_r1h8",heat:"R1H8",st:"Regular"},
+    {name:"Kirra Pinkerton",nat:"USA",fp:null,avg:null,ex:null,mhs:null,ahs:null,hw:null,seed:"R1 Qualify",esl:"★★",eslN:65,hg:"w_r1h8",heat:"R1H8",st:"Regular"},
     {name:"Sally Fitzgibbons",nat:"AUS",fp:76.68,avg:25.56,ex:3,mhs:13.60,ahs:11.01,hw:50.00,seed:"R1 Qualify",esl:"★★★",eslN:48,hg:"w_r1h1",heat:"R1H1",st:"Regular"},
     {name:"Tya Zebrowski",nat:"FRA",fp:60.46,avg:20.15,ex:3,mhs:12.16,ahs:11.73,hw:0.00,seed:"R1 Qualify",esl:"★★",eslN:20,hg:"w_r1h4",heat:"R1H4",st:"Regular"},
     {name:"Yolanda Hopkins",nat:"POR",fp:64.78,avg:21.59,ex:3,mhs:12.67,ahs:10.70,hw:40.00,seed:"R1 Qualify",esl:"★★",eslN:25,hg:"w_r1h2",heat:"R1H2",st:"Regular"},
   ]
 };
 const R1H=[
-  {id:"R1H1",note:"→ R2H9 (vs Italo)",surfers:["Luke Thompson (RSA)","Oscar Berry (AUS)"]},
-  {id:"R1H2",note:"→ R2H6 (vs Yago Dora)",surfers:["Eli Hanneman (HAW)","Event Seed #36"]},
-  {id:"R1H3",note:"→ R2H3 (vs Miguel Pupo)",surfers:["Seth Moniz (HAW)","Bryan Perez (SLV) 🏠"]},
-  {id:"R1H4",note:"→ R2H13 (vs Gabriel Medina)",surfers:["Alan Cleland (MEX)","Ramzi Boukhiam (MAR)"]},
+  {id:"R1H1",note:"→ R2H9 (vs Italo Ferreira)",surfers:["Ramzi Boukhiam (MAR)","Matt McGillivray (RSA)"]},
+  {id:"R1H2",note:"→ R2H6 (vs Yago Dora)",surfers:["Luke Thompson (RSA)","Melvin Ayala (SLV) 🏠"]},
+  {id:"R1H3",note:"→ R2H3 (vs Miguel Pupo)",surfers:["Eli Hanneman (HAW)","Bryan Perez (SLV) 🏠"]},
+  {id:"R1H4",note:"→ R2H13 (vs Gabriel Medina)",surfers:["Seth Moniz (HAW)","Oscar Berry (AUS)"]},
 ];
 const R2H=[
-  {id:"R2H1",s1:"Liam O'Brien",s2:"Jake Marshall"},{id:"R2H2",s1:"Ethan Ewing",s2:"Callum Robson ⭐"},
-  {id:"R2H3",s1:"Miguel Pupo ⭐",s2:"R1H3 Winner"},{id:"R2H4",s1:"Kanoa Igarashi",s2:"Alejo Muniz"},
-  {id:"R2H5",s1:"Marco Mignot",s2:"Rio Waida"},{id:"R2H6",s1:"Yago Dora ⭐",s2:"R1H2 Winner"},
-  {id:"R2H7",s1:"Samuel Pupo",s2:"Joel Vaughan"},{id:"R2H8",s1:"Leonardo Fioravanti",s2:"Mateus Herdy"},
-  {id:"R2H9",s1:"Italo Ferreira ⭐",s2:"R1H1 Winner"},{id:"R2H10",s1:"Crosby Colapinto",s2:"Morgan Cibilic ⭐"},
-  {id:"R2H11",s1:"Filipe Toledo 🔴⭐",s2:"Kauli Vaast"},{id:"R2H12",s1:"George Pittar",s2:"Joao Chianca"},
-  {id:"R2H13",s1:"Gabriel Medina 🔴",s2:"R1H4 Winner"},{id:"R2H14",s1:"Jack Robinson ⭐",s2:"Cole Houshmand"},
-  {id:"R2H15",s1:"Connor O'Leary",s2:"Barron Mamiya"},{id:"R2H16",s1:"Griffin Colapinto ⭐",s2:"Alan Cleland"}
+  {id:"R2H1",s1:"Liam O'Brien",s2:"Jake Marshall"},
+  {id:"R2H2",s1:"Ethan Ewing ⭐",s2:"Callum Robson"},
+  {id:"R2H3",s1:"Miguel Pupo 🔴",s2:"R1H3 Winner"},
+  {id:"R2H4",s1:"Kanoa Igarashi",s2:"Alejo Muniz"},
+  {id:"R2H5",s1:"Marco Mignot",s2:"Rio Waida"},
+  {id:"R2H6",s1:"Yago Dora 🔴",s2:"R1H2 Winner"},
+  {id:"R2H7",s1:"Samuel Pupo",s2:"Joel Vaughan"},
+  {id:"R2H8",s1:"Leonardo Fioravanti",s2:"Mateus Herdy"},
+  {id:"R2H9",s1:"Italo Ferreira ⭐",s2:"R1H1 Winner"},
+  {id:"R2H10",s1:"Crosby Colapinto",s2:"Morgan Cibilic ⭐"},
+  {id:"R2H11",s1:"Filipe Toledo 🔴⭐",s2:"Kauli Vaast"},
+  {id:"R2H12",s1:"George Pittar ⭐",s2:"Joao Chianca"},
+  {id:"R2H13",s1:"Gabriel Medina 🔴",s2:"R1H4 Winner"},
+  {id:"R2H14",s1:"Jack Robinson ⭐",s2:"Cole Houshmand"},
+  {id:"R2H15",s1:"Connor O'Leary",s2:"Barron Mamiya"},
+  {id:"R2H16",s1:"Griffin Colapinto ⭐",s2:"Alan Cleland"},
 ];
 const BRACKET={
   R1:[
-    {id:"R1H1",label:"R1 Heat 1",surfers:["Ramzi Boukhiam","Matt McGillivray"],feedsTo:"R2H9"},
-    {id:"R1H2",label:"R1 Heat 2",surfers:["Luke Thompson","Event Seed #36"],feedsTo:"R2H6"},
-    {id:"R1H3",label:"R1 Heat 3",surfers:["Eli Hanneman","Bryan Perez"],feedsTo:"R2H3"},
-    {id:"R1H4",label:"R1 Heat 4",surfers:["Seth Moniz","Oscar Berry"],feedsTo:"R2H13"}
+    {id:"R1H1",label:"Heat 1",surfers:["Ramzi Boukhiam","Matt McGillivray"],nat:["MAR","RSA"],feedsTo:"R2H9",feedsLbl:"Winner → R2H9"},
+    {id:"R1H2",label:"Heat 2",surfers:["Luke Thompson","Melvin Ayala"],nat:["RSA","SLV"],feedsTo:"R2H6",feedsLbl:"Winner → R2H6"},
+    {id:"R1H3",label:"Heat 3",surfers:["Eli Hanneman","Bryan Perez"],nat:["HAW","SLV"],feedsTo:"R2H3",feedsLbl:"Winner → R2H3"},
+    {id:"R1H4",label:"Heat 4",surfers:["Seth Moniz","Oscar Berry"],nat:["HAW","AUS"],feedsTo:"R2H13",feedsLbl:"Winner → R2H13"}
   ],
   R2:[
-    {id:"R2H1",label:"R2 Heat 1",surfers:["Liam O'Brien","Jake Marshall"],feedsTo:"R3H1"},
-    {id:"R2H2",label:"R2 Heat 2",surfers:["Ethan Ewing","Callum Robson"],feedsTo:"R3H1"},
-    {id:"R2H3",label:"R2 Heat 3",surfers:["Miguel Pupo","prev:R1H3"],feedsTo:"R3H2"},
-    {id:"R2H4",label:"R2 Heat 4",surfers:["Kanoa Igarashi","Alejo Muniz"],feedsTo:"R3H2"},
-    {id:"R2H5",label:"R2 Heat 5",surfers:["Marco Mignot","Rio Waida"],feedsTo:"R3H3"},
-    {id:"R2H6",label:"R2 Heat 6",surfers:["Yago Dora","prev:R1H2"],feedsTo:"R3H3"},
-    {id:"R2H7",label:"R2 Heat 7",surfers:["Samuel Pupo","Joel Vaughan"],feedsTo:"R3H4"},
-    {id:"R2H8",label:"R2 Heat 8",surfers:["Leonardo Fioravanti","Mateus Herdy"],feedsTo:"R3H4"},
-    {id:"R2H9",label:"R2 Heat 9",surfers:["Italo Ferreira","prev:R1H1"],feedsTo:"R3H5"},
-    {id:"R2H10",label:"R2 Heat 10",surfers:["Crosby Colapinto","Morgan Cibilic"],feedsTo:"R3H5"},
-    {id:"R2H11",label:"R2 Heat 11",surfers:["Filipe Toledo","Kauli Vaast"],feedsTo:"R3H6"},
-    {id:"R2H12",label:"R2 Heat 12",surfers:["George Pittar","Joao Chianca"],feedsTo:"R3H6"},
-    {id:"R2H13",label:"R2 Heat 13",surfers:["Gabriel Medina","prev:R1H4"],feedsTo:"R3H7"},
-    {id:"R2H14",label:"R2 Heat 14",surfers:["Jack Robinson","Cole Houshmand"],feedsTo:"R3H7"},
-    {id:"R2H15",label:"R2 Heat 15",surfers:["Connor O'Leary","Barron Mamiya"],feedsTo:"R3H8"},
-    {id:"R2H16",label:"R2 Heat 16",surfers:["Griffin Colapinto","Alan Cleland"],feedsTo:"R3H8"}
+    {id:"R2H1",label:"Heat 1",surfers:["Liam O'Brien","Jake Marshall"],nat:["AUS","USA"],feedsTo:"R3H1",feedsLbl:"Winner → R3H1"},
+    {id:"R2H2",label:"Heat 2",surfers:["Ethan Ewing","Callum Robson"],nat:["AUS","AUS"],feedsTo:"R3H1",feedsLbl:"Winner → R3H1"},
+    {id:"R2H3",label:"Heat 3",surfers:["Miguel Pupo","prev:R1H3"],nat:["BRA",""],feedsTo:"R3H2",feedsLbl:"Winner → R3H2"},
+    {id:"R2H4",label:"Heat 4",surfers:["Kanoa Igarashi","Alejo Muniz"],nat:["JPN","BRA"],feedsTo:"R3H2",feedsLbl:"Winner → R3H2"},
+    {id:"R2H5",label:"Heat 5",surfers:["Marco Mignot","Rio Waida"],nat:["FRA","INA"],feedsTo:"R3H3",feedsLbl:"Winner → R3H3"},
+    {id:"R2H6",label:"Heat 6",surfers:["Yago Dora","prev:R1H2"],nat:["BRA",""],feedsTo:"R3H3",feedsLbl:"Winner → R3H3"},
+    {id:"R2H7",label:"Heat 7",surfers:["Samuel Pupo","Joel Vaughan"],nat:["BRA","AUS"],feedsTo:"R3H4",feedsLbl:"Winner → R3H4"},
+    {id:"R2H8",label:"Heat 8",surfers:["Leonardo Fioravanti","Mateus Herdy"],nat:["ITA","BRA"],feedsTo:"R3H4",feedsLbl:"Winner → R3H4"},
+    {id:"R2H9",label:"Heat 9",surfers:["Italo Ferreira","prev:R1H1"],nat:["BRA",""],feedsTo:"R3H5",feedsLbl:"Winner → R3H5"},
+    {id:"R2H10",label:"Heat 10",surfers:["Crosby Colapinto","Morgan Cibilic"],nat:["USA","AUS"],feedsTo:"R3H5",feedsLbl:"Winner → R3H5"},
+    {id:"R2H11",label:"Heat 11",surfers:["Filipe Toledo","Kauli Vaast"],nat:["BRA","PYF"],feedsTo:"R3H6",feedsLbl:"Winner → R3H6"},
+    {id:"R2H12",label:"Heat 12",surfers:["George Pittar","Joao Chianca"],nat:["AUS","BRA"],feedsTo:"R3H6",feedsLbl:"Winner → R3H6"},
+    {id:"R2H13",label:"Heat 13",surfers:["Gabriel Medina","prev:R1H4"],nat:["BRA",""],feedsTo:"R3H7",feedsLbl:"Winner → R3H7"},
+    {id:"R2H14",label:"Heat 14",surfers:["Jack Robinson","Cole Houshmand"],nat:["AUS","USA"],feedsTo:"R3H7",feedsLbl:"Winner → R3H7"},
+    {id:"R2H15",label:"Heat 15",surfers:["Connor O'Leary","Barron Mamiya"],nat:["AUS","HAW"],feedsTo:"R3H8",feedsLbl:"Winner → R3H8"},
+    {id:"R2H16",label:"Heat 16",surfers:["Griffin Colapinto","Alan Cleland"],nat:["USA","IRL"],feedsTo:"R3H8",feedsLbl:"Winner → R3H8"}
   ],
+  R3:[
+    {id:"R3H1",label:"Heat 1",surfers:["prev:R2H1","prev:R2H2"],feedsTo:"QFH1",feedsLbl:"Winner → QF1"},
+    {id:"R3H2",label:"Heat 2",surfers:["prev:R2H3","prev:R2H4"],feedsTo:"QFH1",feedsLbl:"Winner → QF1"},
+    {id:"R3H3",label:"Heat 3",surfers:["prev:R2H5","prev:R2H6"],feedsTo:"QFH2",feedsLbl:"Winner → QF2"},
+    {id:"R3H4",label:"Heat 4",surfers:["prev:R2H7","prev:R2H8"],feedsTo:"QFH2",feedsLbl:"Winner → QF2"},
+    {id:"R3H5",label:"Heat 5",surfers:["prev:R2H9","prev:R2H10"],feedsTo:"QFH3",feedsLbl:"Winner → QF3"},
+    {id:"R3H6",label:"Heat 6",surfers:["prev:R2H11","prev:R2H12"],feedsTo:"QFH3",feedsLbl:"Winner → QF3"},
+    {id:"R3H7",label:"Heat 7",surfers:["prev:R2H13","prev:R2H14"],feedsTo:"QFH4",feedsLbl:"Winner → QF4"},
+    {id:"R3H8",label:"Heat 8",surfers:["prev:R2H15","prev:R2H16"],feedsTo:"QFH4",feedsLbl:"Winner → QF4"}
+  ],
+  QF:[
+    {id:"QFH1",label:"Heat 1",surfers:["prev:R3H1","prev:R3H2"],feedsTo:"SFH1",feedsLbl:"Winner → SF1"},
+    {id:"QFH2",label:"Heat 2",surfers:["prev:R3H3","prev:R3H4"],feedsTo:"SFH1",feedsLbl:"Winner → SF1"},
+    {id:"QFH3",label:"Heat 3",surfers:["prev:R3H5","prev:R3H6"],feedsTo:"SFH2",feedsLbl:"Winner → SF2"},
+    {id:"QFH4",label:"Heat 4",surfers:["prev:R3H7","prev:R3H8"],feedsTo:"SFH2",feedsLbl:"Winner → SF2"}
+  ],
+  SF:[
+    {id:"SFH1",label:"Heat 1",surfers:["prev:QFH1","prev:QFH2"],feedsTo:"FIN",feedsLbl:"Winner → Final"},
+    {id:"SFH2",label:"Heat 2",surfers:["prev:QFH3","prev:QFH4"],feedsTo:"FIN",feedsLbl:"Winner → Final"}
+  ],
+  FINAL:[{id:"FIN",label:"Final",surfers:["prev:SFH1","prev:SFH2"],feedsTo:null,feedsLbl:""}],
   WR1:[
-    {id:"WR1H1",label:"R1 Heat 1",surfers:["Vahine Fierro","Sally Fitzgibbons"],feedsTo:"WR2H5"},
-    {id:"WR1H2",label:"R1 Heat 2",surfers:["Erin Brooks","Yolanda Hopkins"],feedsTo:"WR2H1"},
-    {id:"WR1H3",label:"R1 Heat 3",surfers:["Nadia Erostarbe","Francisca Veselko"],feedsTo:"WR2H3"},
-    {id:"WR1H4",label:"R1 Heat 4",surfers:["Tyler Wright","Tya Zebrowski"],feedsTo:"WR2H7"},
-    {id:"WR1H5",label:"R1 Heat 5",surfers:["Stephanie Gilmore","Anat Lelior"],feedsTo:"WR2H2"},
-    {id:"WR1H6",label:"R1 Heat 6",surfers:["Isabella Nichols","Bella Kenworthy"],feedsTo:"WR2H8"},
-    {id:"WR1H7",label:"R1 Heat 7",surfers:["Alyssa Spencer","Brisa Hennessy"],feedsTo:"WR2H4"},
-    {id:"WR1H8",label:"R1 Heat 8",surfers:["Caroline Marks","Kirra Pinkerton"],feedsTo:"WR2H6"}
+    {id:"WR1H1",label:"Heat 1",surfers:["Vahine Fierro","Sally Fitzgibbons"],nat:["PYF","AUS"],feedsTo:"WR2H5",feedsLbl:"Winner → R2H5"},
+    {id:"WR1H2",label:"Heat 2",surfers:["Erin Brooks","Yolanda Hopkins"],nat:["CAN","POR"],feedsTo:"WR2H1",feedsLbl:"Winner → R2H1"},
+    {id:"WR1H3",label:"Heat 3",surfers:["Nadia Erostarbe","Francisca Veselko"],nat:["ESP","NZL"],feedsTo:"WR2H3",feedsLbl:"Winner → R2H3"},
+    {id:"WR1H4",label:"Heat 4",surfers:["Tyler Wright","Tya Zebrowski"],nat:["AUS","FRA"],feedsTo:"WR2H7",feedsLbl:"Winner → R2H7"},
+    {id:"WR1H5",label:"Heat 5",surfers:["Stephanie Gilmore","Anat Lelior"],nat:["AUS","ISR"],feedsTo:"WR2H2",feedsLbl:"Winner → R2H2"},
+    {id:"WR1H6",label:"Heat 6",surfers:["Isabella Nichols","Bella Kenworthy"],nat:["AUS","USA"],feedsTo:"WR2H8",feedsLbl:"Winner → R2H8"},
+    {id:"WR1H7",label:"Heat 7",surfers:["Alyssa Spencer","Brisa Hennessy"],nat:["USA","CRC"],feedsTo:"WR2H4",feedsLbl:"Winner → R2H4"},
+    {id:"WR1H8",label:"Heat 8",surfers:["Caroline Marks","Kirra Pinkerton"],nat:["USA","USA"],feedsTo:"WR2H6",feedsLbl:"Winner → R2H6"}
   ],
   WR2:[
-    {id:"WR2H1",label:"R2 Heat 1",surfers:["Gabriela Bryan","prev:WR1H2"],feedsTo:"WQF1"},
-    {id:"WR2H2",label:"R2 Heat 2",surfers:["Sawyer Lindblad","prev:WR1H5"],feedsTo:"WQF1"},
-    {id:"WR2H3",label:"R2 Heat 3",surfers:["Luana Silva","prev:WR1H3"],feedsTo:"WQF2"},
-    {id:"WR2H4",label:"R2 Heat 4",surfers:["Carissa Moore","prev:WR1H7"],feedsTo:"WQF2"},
-    {id:"WR2H5",label:"R2 Heat 5",surfers:["Molly Picklum","prev:WR1H1"],feedsTo:"WQF3"},
-    {id:"WR2H6",label:"R2 Heat 6",surfers:["Bettylou Sakura Johnson","prev:WR1H8"],feedsTo:"WQF3"},
-    {id:"WR2H7",label:"R2 Heat 7",surfers:["Lakey Peterson","prev:WR1H4"],feedsTo:"WQF4"},
-    {id:"WR2H8",label:"R2 Heat 8",surfers:["Caitlin Simmers","prev:WR1H6"],feedsTo:"WQF4"}
-  ]
+    {id:"WR2H1",label:"Heat 1",surfers:["Gabriela Bryan","prev:WR1H2"],nat:["HAW",""],feedsTo:"WQF1",feedsLbl:"Winner → QF1"},
+    {id:"WR2H2",label:"Heat 2",surfers:["Sawyer Lindblad","prev:WR1H5"],nat:["USA",""],feedsTo:"WQF1",feedsLbl:"Winner → QF1"},
+    {id:"WR2H3",label:"Heat 3",surfers:["Luana Silva","prev:WR1H3"],nat:["BRA",""],feedsTo:"WQF2",feedsLbl:"Winner → QF2"},
+    {id:"WR2H4",label:"Heat 4",surfers:["Carissa Moore","prev:WR1H7"],nat:["HAW",""],feedsTo:"WQF2",feedsLbl:"Winner → QF2"},
+    {id:"WR2H5",label:"Heat 5",surfers:["Molly Picklum","prev:WR1H1"],nat:["AUS",""],feedsTo:"WQF3",feedsLbl:"Winner → QF3"},
+    {id:"WR2H6",label:"Heat 6",surfers:["Bettylou Sakura Johnson","prev:WR1H8"],nat:["HAW",""],feedsTo:"WQF3",feedsLbl:"Winner → QF3"},
+    {id:"WR2H7",label:"Heat 7",surfers:["Lakey Peterson","prev:WR1H4"],nat:["USA",""],feedsTo:"WQF4",feedsLbl:"Winner → QF4"},
+    {id:"WR2H8",label:"Heat 8",surfers:["Caitlin Simmers","prev:WR1H6"],nat:["USA",""],feedsTo:"WQF4",feedsLbl:"Winner → QF4"}
+  ],
+  WQF:[
+    {id:"WQF1",label:"Heat 1",surfers:["prev:WR2H1","prev:WR2H2"],feedsTo:"WSF1",feedsLbl:"Winner → SF1"},
+    {id:"WQF2",label:"Heat 2",surfers:["prev:WR2H3","prev:WR2H4"],feedsTo:"WSF1",feedsLbl:"Winner → SF1"},
+    {id:"WQF3",label:"Heat 3",surfers:["prev:WR2H5","prev:WR2H6"],feedsTo:"WSF2",feedsLbl:"Winner → SF2"},
+    {id:"WQF4",label:"Heat 4",surfers:["prev:WR2H7","prev:WR2H8"],feedsTo:"WSF2",feedsLbl:"Winner → SF2"}
+  ],
+  WSF:[
+    {id:"WSF1",label:"Heat 1",surfers:["prev:WQF1","prev:WQF2"],feedsTo:"WFIN",feedsLbl:"Winner → Final"},
+    {id:"WSF2",label:"Heat 2",surfers:["prev:WQF3","prev:WQF4"],feedsTo:"WFIN",feedsLbl:"Winner → Final"}
+  ],
+  WFINAL:[{id:"WFIN",label:"Final",surfers:["prev:WSF1","prev:WSF2"],feedsTo:null,feedsLbl:""}]
 };
+const ROUNDS=["R1","R2","R3","QF","SF","FINAL"];
+const RLBLS={R1:"Round 1 — Sudden Death",R2:"Round 2",R3:"Round 3",QF:"Quarterfinals",SF:"Semifinals",FINAL:"Final"};
+const WDIVISION_ROUNDS=["WR1","WR2","WQF","WSF","WFINAL"];
+const WRLBLS={WR1:"Round 1 — Opening Round",WR2:"Round 2",WQF:"Quarterfinals",WSF:"Semifinals",WFINAL:"Final"};
 const ESL_HIST=[
-  {year:2025,men:[{p:1,n:"Jordy Smith",c:"RSA"},{p:2,n:"Matt McGillivray",c:"RSA"},{p:3,n:"Italo Ferreira",c:"BRA"}],women:[{p:1,n:"Gabriela Bryan",c:"HAW"},{p:2,n:"Isabella Nichols",c:"AUS"},{p:3,n:"Caitlin Simmers",c:"USA"}]},
+  {year:2025,men:["Griffin Colapinto","Ethan Ewing","Filipe Toledo","Connor O'Leary","Luke Thompson","Matt McGillivray"],women:[{p:1,n:"Gabriela Bryan",c:"HAW"},{p:2,n:"Isabella Nichols",c:"AUS"},{p:3,n:"Caitlin Simmers",c:"USA"}]},
   {year:2024,men:[{p:1,n:"John John Florence",c:"HAW"},{p:2,n:"Yago Dora",c:"BRA"},{p:3,n:"Griffin Colapinto",c:"USA"}],women:[{p:1,n:"Caroline Marks",c:"USA"},{p:2,n:"Gabriela Bryan",c:"HAW"},{p:3,n:"Caitlin Simmers",c:"USA"}]},
   {year:2023,men:[{p:1,n:"Filipe Toledo",c:"BRA"},{p:2,n:"Griffin Colapinto",c:"USA"},{p:3,n:"Ethan Ewing",c:"AUS"}],women:[{p:1,n:"Caroline Marks",c:"USA"},{p:2,n:"Molly Picklum",c:"AUS"},{p:3,n:"Johanne Defay",c:"FRA"}]},
   {year:2022,men:[{p:1,n:"Griffin Colapinto",c:"USA"},{p:2,n:"Filipe Toledo",c:"BRA"},{p:3,n:"Italo Ferreira",c:"BRA"}],women:[{p:1,n:"Stephanie Gilmore",c:"AUS"},{p:2,n:"Lakey Peterson",c:"USA"},{p:3,n:"Caroline Marks",c:"USA"}]},
 ];
-const MRANKS=[{rank:1,name:"Italo Ferreira",nat:"BRA",pts:22725,heat:"R2H9",esl:"★★★★",eslN:80,st:"Goofy"},{rank:2,name:"Miguel Pupo",nat:"BRA",pts:21385,heat:"R2H3",esl:"★★☆",eslN:40,st:"Goofy"},{rank:3,name:"Gabriel Medina",nat:"BRA",pts:20525,heat:"R2H13",esl:"★★☆",eslN:40,st:"Goofy"},{rank:4,name:"Yago Dora",nat:"BRA",pts:19630,heat:"R2H6",esl:"★★★☆",eslN:72,st:"Goofy"},{rank:5,name:"George Pittar",nat:"AUS",pts:17640,heat:"R2H12",esl:"★★★",eslN:65,st:"Regular"},{rank:6,name:"Ethan Ewing",nat:"AUS",pts:16345,heat:"R2H2",esl:"★★★☆",eslN:70,st:"Regular"},{rank:7,name:"Samuel Pupo",nat:"BRA",pts:16575,heat:"R2H7",esl:"★★☆",eslN:45,st:"Regular"},{rank:8,name:"Griffin Colapinto",nat:"USA",pts:16490,heat:"R2H16",esl:"★★★★★",eslN:95,st:"Regular"},{rank:9,name:"Leonardo Fioravanti",nat:"ITA",pts:16130,heat:"R2H8",esl:"★★★☆",eslN:65,st:"Regular"},{rank:10,name:"Filipe Toledo",nat:"BRA",pts:15130,heat:"R2H11",esl:"★★★★",eslN:88,st:"Regular"},{rank:11,name:"Liam O'Brien",nat:"AUS",pts:13325,heat:"R2H1",esl:"★★",eslN:30,st:"Regular"},{rank:12,name:"Connor O'Leary",nat:"AUS",pts:13120,heat:"R2H15",esl:"★★",eslN:38,st:"Goofy"},{rank:13,name:"Kanoa Igarashi",nat:"JPN",pts:12865,heat:"R2H4",esl:"★★☆",eslN:42,st:"Regular"},{rank:14,name:"Marco Mignot",nat:"FRA",pts:10960,heat:"R2H5",esl:"★★",eslN:30,st:"Regular"},{rank:15,name:"Jack Robinson",nat:"AUS",pts:10960,heat:"R2H14",esl:"★★★☆",eslN:70,st:"Regular"},{rank:16,name:"Morgan Cibilic",nat:"AUS",pts:10955,heat:"R2H10",esl:"★★★",eslN:55,st:"Regular"},{rank:17,name:"Rio Waida",nat:"INA",pts:10985,heat:"R2H5",esl:"★★★",eslN:55,st:"Regular"},{rank:18,name:"Crosby Colapinto",nat:"USA",pts:10985,heat:"R2H10",esl:"★★★",eslN:52,st:"Regular"},{rank:19,name:"Jake Marshall",nat:"USA",pts:8610,heat:"R2H14",esl:"★★☆",eslN:42,st:"Regular"},{rank:20,name:"Alejo Muniz",nat:"BRA",pts:6490,heat:"R2H7",esl:"★★☆",eslN:40,st:"Regular"},{rank:21,name:"Cole Houshmand",nat:"USA",pts:7765,heat:"R2H15",esl:"★★★",eslN:55,st:"Goofy"},{rank:22,name:"Kauli Vaast",nat:"PYF",pts:7765,heat:"R2H12",esl:"★★",eslN:35,st:"Goofy"},{rank:23,name:"Barron Mamiya",nat:"HAW",pts:7765,heat:"R2H4",esl:"★★",eslN:35,st:"Regular"},{rank:24,name:"Joel Vaughan",nat:"AUS",pts:7765,heat:"R2H11",esl:"★★",eslN:32,st:"Regular"},{rank:25,name:"Mateus Herdy",nat:"BRA",pts:7045,heat:"R2H2",esl:"★",eslN:15,st:"Regular"},{rank:35,name:"Matt McGillivray",nat:"RSA",pts:0,heat:"R1H1",esl:"★★★",eslN:52,st:"Regular"},{rank:27,name:"Joao Chianca",nat:"BRA",pts:6200,heat:"R2H12",esl:"★★★",eslN:52,st:"Goofy"},{rank:28,name:"Callum Robson",nat:"AUS",pts:6200,heat:"R2H16",esl:"★★",eslN:30,st:"Regular"},{rank:29,name:"Seth Moniz",nat:"HAW",pts:4800,heat:"R1H3",esl:"★★★",eslN:50,st:"Regular"},{rank:30,name:"Eli Hanneman",nat:"HAW",pts:4800,heat:"R1H2",esl:"★★",eslN:30,st:"Regular"},{rank:31,name:"Alan Cleland",nat:"IRL",pts:4800,heat:"R1H4",esl:"★★★☆",eslN:62,st:"Regular"},{rank:32,name:"Luke Thompson",nat:"RSA",pts:3900,heat:"R1H1",esl:"★★",eslN:28,st:"Regular"},{rank:33,name:"Ramzi Boukhiam",nat:"MAR",pts:2800,heat:"R1H1",esl:"★",eslN:12,st:"Regular"},{rank:34,name:"Oscar Berry",nat:"AUS",pts:580,heat:"R1H1",esl:"★★",eslN:25,st:"Regular"}];
+const MRANKS=[{rank:1,name:"Italo Ferreira",nat:"BRA",pts:22725,heat:"R2H9",esl:"★★★★",eslN:80,st:"Goofy"},{rank:2,name:"Miguel Pupo",nat:"BRA",pts:21385,heat:"R2H3",esl:"★★☆",eslN:40,st:"Goofy"},{rank:3,name:"Gabriel Medina",nat:"BRA",pts:20525,heat:"R2H13",esl:"★★☆",eslN:40,st:"Goofy"},{rank:4,name:"Yago Dora",nat:"BRA",pts:19630,heat:"R2H6",esl:"★★★☆",eslN:72,st:"Goofy"},{rank:5,name:"George Pittar",nat:"AUS",pts:17640,heat:"R2H12",esl:"★★★",eslN:65,st:"Regular"},{rank:6,name:"Ethan Ewing",nat:"AUS",pts:16345,heat:"R2H2",esl:"★★★☆",eslN:70,st:"Regular"},{rank:7,name:"Samuel Pupo",nat:"BRA",pts:16575,heat:"R2H7",esl:"★★☆",eslN:45,st:"Regular"},{rank:8,name:"Griffin Colapinto",nat:"USA",pts:16490,heat:"R2H16",esl:"★★★★★",eslN:95,st:"Regular"},{rank:9,name:"Leonardo Fioravanti",nat:"ITA",pts:16130,heat:"R2H8",esl:"★★★☆",eslN:65,st:"Regular"},{rank:10,name:"Filipe Toledo",nat:"BRA",pts:15130,heat:"R2H11",esl:"★★★★",eslN:88,st:"Regular"},{rank:11,name:"Liam O'Brien",nat:"AUS",pts:13325,heat:"R2H1",esl:"★★",eslN:30,st:"Regular"},{rank:12,name:"Connor O'Leary",nat:"AUS",pts:13120,heat:"R2H15",esl:"★★",eslN:38,st:"Goofy"},{rank:13,name:"Kanoa Igarashi",nat:"JPN",pts:12865,heat:"R2H4",esl:"★★☆",eslN:42,st:"Regular"},{rank:14,name:"Marco Mignot",nat:"FRA",pts:10960,heat:"R2H5",esl:"★★",eslN:30,st:"Regular"},{rank:15,name:"Jack Robinson",nat:"AUS",pts:10960,heat:"R2H14",esl:"★★★☆",eslN:70,st:"Regular"},{rank:16,name:"Morgan Cibilic",nat:"AUS",pts:10955,heat:"R2H10",esl:"★★★",eslN:55,st:"Regular"},{rank:17,name:"Rio Waida",nat:"INA",pts:10985,heat:"R2H5",esl:"★★★",eslN:55,st:"Regular"},{rank:18,name:"Crosby Colapinto",nat:"USA",pts:10985,heat:"R2H10",esl:"★★★",eslN:52,st:"Regular"},{rank:19,name:"Jake Marshall",nat:"USA",pts:8610,heat:"R2H14",esl:"★★☆",eslN:42,st:"Regular"},{rank:20,name:"Alejo Muniz",nat:"BRA",pts:6490,heat:"R2H7",esl:"★★☆",eslN:40,st:"Regular"},{rank:21,name:"Cole Houshmand",nat:"USA",pts:7765,heat:"R2H15",esl:"★★★",eslN:55,st:"Goofy"},{rank:22,name:"Kauli Vaast",nat:"PYF",pts:7765,heat:"R2H12",esl:"★★",eslN:35,st:"Goofy"},{rank:23,name:"Barron Mamiya",nat:"HAW",pts:7765,heat:"R2H4",esl:"★★",eslN:35,st:"Regular"},{rank:24,name:"Joel Vaughan",nat:"AUS",pts:7765,heat:"R2H11",esl:"★★",eslN:32,st:"Regular"},{rank:25,name:"Mateus Herdy",nat:"BRA",pts:7045,heat:"R2H2",esl:"★",eslN:15,st:"Regular"},{rank:26,name:"Matt McGillivray",nat:"RSA",pts:0,heat:"R1H2",esl:"★★★",eslN:52,st:"Regular"},{rank:27,name:"Joao Chianca",nat:"BRA",pts:6200,heat:"R2H12",esl:"★★★",eslN:52,st:"Goofy"},{rank:28,name:"Callum Robson",nat:"AUS",pts:6200,heat:"R2H16",esl:"★★",eslN:30,st:"Regular"},{rank:29,name:"Seth Moniz",nat:"HAW",pts:4800,heat:"R1H3",esl:"★★★",eslN:50,st:"Regular"},{rank:30,name:"Eli Hanneman",nat:"HAW",pts:4800,heat:"R1H2",esl:"★★",eslN:30,st:"Regular"},{rank:31,name:"Alan Cleland",nat:"IRL",pts:4800,heat:"R1H4",esl:"★★★☆",eslN:62,st:"Regular"},{rank:32,name:"Luke Thompson",nat:"RSA",pts:3900,heat:"R1H1",esl:"★★",eslN:28,st:"Regular"},{rank:33,name:"Ramzi Boukhiam",nat:"MAR",pts:2800,heat:"R1H4",esl:"★",eslN:12,st:"Regular"},{rank:34,name:"Oscar Berry",nat:"AUS",pts:580,heat:"R1H1",esl:"★★",eslN:25,st:"Regular"}];
 const WRANKS=[{rank:1,name:"Gabriela Bryan",nat:"HAW",pts:24235,esl:"★★★★",seed:"R2 Top 8",st:"Regular"},{rank:2,name:"Luana Silva",nat:"BRA",pts:22345,esl:"★★★",seed:"R2 Top 8",st:"Regular"},{rank:3,name:"Molly Picklum",nat:"AUS",pts:22085,esl:"★★★☆",seed:"R2 Top 8",st:"Regular"},{rank:4,name:"Lakey Peterson",nat:"USA",pts:21490,esl:"★★★★",seed:"R2 Top 8",st:"Regular"},{rank:5,name:"Sawyer Lindblad",nat:"USA",pts:21070,esl:"★★★",seed:"R2 Top 8",st:"Goofy"},{rank:6,name:"Carissa Moore",nat:"HAW",pts:19765,esl:"★★★☆",seed:"R2 Top 8",st:"Regular"},{rank:7,name:"Caitlin Simmers",nat:"USA",pts:11475,esl:"★★★☆",seed:"R2 Top 8",st:"Regular"},{rank:8,name:"Bettylou Sakura Johnson",nat:"HAW",pts:14820,esl:"★★★",seed:"R2 Top 8",st:"Regular"},{rank:9,name:"Alyssa Spencer",nat:"USA",pts:14170,esl:"★★",seed:"R1 Qualify",st:"Goofy"},{rank:10,name:"Stephanie Gilmore",nat:"AUS",pts:14800,esl:"★★★★★",seed:"R1 Qualify",st:"Regular"},{rank:11,name:"Caroline Marks",nat:"USA",pts:13490,esl:"★★★★★",seed:"R1 Qualify",st:"Goofy"},{rank:12,name:"Isabella Nichols",nat:"AUS",pts:12085,esl:"★★★☆",seed:"R1 Qualify",st:"Regular"},{rank:13,name:"Nadia Erostarbe",nat:"ESP",pts:10385,esl:"★★",seed:"R1 Qualify",st:"Goofy"},{rank:14,name:"Tyler Wright",nat:"AUS",pts:9765,esl:"★★★",seed:"R1 Qualify",st:"Regular"},{rank:15,name:"Erin Brooks",nat:"CAN",pts:7000,esl:"★★",seed:"R1 Qualify",st:"Goofy"},{rank:16,name:"Vahine Fierro",nat:"PYF",pts:7000,esl:"★★☆",seed:"R1 Qualify",st:"Goofy"},{rank:17,name:"Sally Fitzgibbons",nat:"AUS",pts:7000,esl:"★★★",seed:"R1 Qualify",st:"Regular"},{rank:18,name:"Yolanda Hopkins",nat:"POR",pts:6000,esl:"★★",seed:"R1 Qualify",st:"Regular"},{rank:19,name:"Francisca Veselko",nat:"NZL",pts:6000,esl:"★",seed:"R1 Qualify",st:"Regular"},{rank:20,name:"Tya Zebrowski",nat:"FRA",pts:6000,esl:"★★",seed:"R1 Qualify",st:"Regular"},{rank:21,name:"Vahine Fierro",nat:"PYF",pts:6200,esl:"★★☆",seed:"R1 Qualify",st:"Goofy"},{rank:22,name:"Bella Kenworthy",nat:"USA",pts:4800,esl:"★★",seed:"R1 Qualify",st:"Regular"},{rank:23,name:"Brisa Hennessy",nat:"CRC",pts:4800,esl:"★★★",seed:"R1 Qualify",st:"Regular"}];
 
 
@@ -1976,7 +2023,7 @@ const CT_RANK={
   "Kanoa Igarashi":13,"Marco Mignot":14,"Jack Robinson":15,"Morgan Cibilic":16,
   "Rio Waida":17,"Crosby Colapinto":18,"Jake Marshall":19,"Alejo Muniz":20,
   "Cole Houshmand":21,"Kauli Vaast":22,"Barron Mamiya":23,"Joel Vaughan":24,
-  "Mateus Herdy":25,"Matt McGillivray":35,"Joao Chianca":27,"Callum Robson":28,
+  "Mateus Herdy":25,"Matt McGillivray":26,"Joao Chianca":27,"Callum Robson":28,
   "Seth Moniz":29,"Eli Hanneman":30,"Alan Cleland":31,"Luke Thompson":32,
   "Ramzi Boukhiam":33,"Oscar Berry":34,"Bryan Perez":null,
   // Women
@@ -1986,7 +2033,8 @@ const CT_RANK={
   "Nadia Erostarbe":13,"Tyler Wright":14,"Erin Brooks":15,"Vahine Fierro":16,
   "Sally Fitzgibbons":17,"Yolanda Hopkins":18,"Francisca Veselko":19,"Tya Zebrowski":20,
   "Ariel Lallor":21,"Bella Kenworthy":22,"Brisa Hennessy":23,"Kirra Pinkerton":null,
-  "Anat Lelior":null
+  "Anat Lelior":null,
+  "Melvin Ayala":null
 };
 
 const FLAG_EMOJI = {
@@ -2033,8 +2081,6 @@ const allW=()=>[...WOMEN.A,...WOMEN.B,...WOMEN.C];
 function getTier(g,name){const T=g==='men'?MEN:WOMEN;for(const k of['A','B','C'])if(T[k].find(s=>s.name===name))return k;return'C';}
 function countTier(sel,arr){return arr.filter(s=>sel.has(s.name)).length;}
 function findClash(sel,pool,surfer){for(const s of pool){if(s.name!==surfer.name&&sel.has(s.name)&&s.hg&&s.hg===surfer.hg)return s.name;}return null;}
-const ROUNDS=['R1','R2','R3','QF','SF','F'].filter(r=>BRACKET[r]);
-const RLBLS={R1:'Opening Round',R2:'Elimination Round',R3:'Round of 16',QF:'Quarterfinals',SF:'Semifinals',F:'Final'};
 function resolveSlot(s){if(!s.startsWith('prev:'))return s;return predState[s.replace('prev:','')]||null;}
 function getKO(){
   // Only flag KOs if the predictor has been used
@@ -2057,8 +2103,23 @@ function getKO(){
 }
 function getAllW(){const w=new Set();for(const r of ROUNDS)for(const h of BRACKET[r])if(predState[h.id])w.add(predState[h.id]);return w;}
 function deepR(name){let d=null;for(const r of ROUNDS)for(const h of BRACKET[r])if(h.surfers.map(resolveSlot).includes(name))d=r;return d;}
-const ESL_M={"Griffin Colapinto":100,"Matt McGillivray":52,"Filipe Toledo":88,"Italo Ferreira":75,"Yago Dora":72,"Ethan Ewing":58,"Jack Robinson":55,"George Pittar":48,"Alan Cleland":52,"Seth Moniz":42,"Morgan Cibilic":42,"Leonardo Fioravanti":45};
-const ESL_W={"Gabriela Bryan":100,"Caroline Marks":95,"Isabella Nichols":72,"Lakey Peterson":75,"Carissa Moore":70,"Stephanie Gilmore":60,"Caitlin Simmers":65,"Sawyer Lindblad":50,"Molly Picklum":58,"Luana Silva":45};
+const ESL_M={
+  "Griffin Colapinto":100,"Filipe Toledo":88,"Italo Ferreira":75,"Yago Dora":72,
+  "Ethan Ewing":58,"Jack Robinson":55,"George Pittar":48,"Alan Cleland":52,
+  "Seth Moniz":42,"Morgan Cibilic":42,"Leonardo Fioravanti":45,
+  "Matt McGillivray":82,"Crosby Colapinto":48,"Kanoa Igarashi":42,
+  "Samuel Pupo":38,"Barron Mamiya":32,"Joao Chianca":35,
+  "Connor O'Leary":55,
+  "Bryan Perez":78,
+  "Melvin Ayala":78
+};
+const ESL_W={
+  "Gabriela Bryan":100,"Caroline Marks":95,"Stephanie Gilmore":85,
+  "Lakey Peterson":75,"Carissa Moore":70,"Isabella Nichols":72,
+  "Caitlin Simmers":65,"Molly Picklum":58,"Sawyer Lindblad":50,"Luana Silva":45,
+  "Tyler Wright":48,"Sally Fitzgibbons":52,"Brisa Hennessy":42,
+  "Kirra Pinkerton":62
+};
 function scoreM(s){const fp=(s.fp||0)/248.58*100,hw=s.hw||0,esl=ESL_M[s.name]||s.eslN||25;const r=MRANKS.find(r=>r.name===s.name);const rank=r?Math.max(20,100-(r.rank-1)*2.3):50;const st=s.st==='Regular'?15:0,r1=(s.heat||'').startsWith('R1')?-12:0,ahs=Math.min(100,(s.ahs||0)*6);return(fp*.28)+(hw*.22)+(esl*.20)+(rank*.10)+(st*.12)+(r1*.05)+(ahs*.03);}
 function scoreW(s){const fp=(s.fp||0)/198.43*100,hw=s.hw||0,esl=ESL_W[s.name]||s.eslN||25;const r=WRANKS.find(r=>r.name===s.name);const rank=r?Math.max(20,100-(r.rank-1)*2.8):50;const r1=(s.seed||'').includes('Qualify')?-8:0,ahs=Math.min(100,(s.ahs||0)*6);return(fp*.30)+(hw*.22)+(esl*.22)+(rank*.12)+(r1*.05)+(ahs*.04);}
 function fmt(v,d=2){if(v===null||v===undefined)return'<span style="opacity:.3">—</span>';return Number(v).toFixed(d);}
@@ -2192,7 +2253,7 @@ function renderTier(g,tk){
   const cap=g==='men'?MCAPS[tk]:WCAPS[tk];
   const full=picked>=cap;
   const open=tOpen[g][tk];
-  const lbls={A:'TIER A — CT Ranks 1–8',B:'TIER B — CT Ranks 9–28',C:'TIER C — CT Ranks 29–34 + Wildcards'};
+  const lbls={A:'TIER A — Premium',B:'TIER B — Mid Range',C:'TIER C — Round 1 & Low Seeds'};
   const descs={men:{A:'CT Ranks 1–8 · Pick 2',B:'CT Ranks 9–28 · Pick 2',C:'CT Ranks 29–34 + Wildcards · Pick 2'},women:{A:'CT Ranks 1–8 · Pick 2',B:'CT Ranks 9–16 · Pick 2',C:'CT Ranks 17–23 + Wildcard · Pick 2'}};
   let rows='';
   if(open){
@@ -2354,9 +2415,6 @@ document.addEventListener('click',function(e){
       tab.classList.add('active');
       var p=_el('panel-'+t);if(p)p.classList.add('active');
       if(t==='predictor')try{renderPredictor();}catch(ex){}
-      if(t==='bracket')try{renderBracket();}catch(ex){}
-      if(t==='rankings')try{renderRankings();}catch(ex){}
-      if(t==='history')try{renderHistory();}catch(ex){}
       if(t==='picks')try{renderTeamSummary();}catch(ex){}
       return;
     }
@@ -2511,9 +2569,9 @@ function showAPModal(){
   inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();tryUnlock();}if(e.key==='Escape')overlay.remove();});
   overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.remove();});
 }
-document.getElementById('randompick-btn').addEventListener('click',randomPickTeam);
-document.getElementById('reset-btn').addEventListener('click',()=>{selM.clear();selW.clear();psMan=null;psWoman=null;awaitingPS=false;renderPicks('men');renderPicks('women');renderPS();updateBar();});
-document.getElementById('reset-pred-btn').addEventListener('click',()=>{Object.keys(predState).forEach(k=>delete predState[k]);renderPredictor();updateBar();});
+(document.getElementById('randompick-btn')||{addEventListener:function(){}}).addEventListener('click',randomPickTeam);
+(document.getElementById('reset-btn')||{addEventListener:function(){}}).addEventListener('click',()=>{selM.clear();selW.clear();psMan=null;psWoman=null;awaitingPS=false;renderPicks('men');renderPicks('women');renderPS();updateBar();});
+(document.getElementById('reset-pred-btn')||{addEventListener:function(){}}).addEventListener('click',()=>{Object.keys(predState).forEach(k=>delete predState[k]);renderPredictor();updateBar();});
 
 function randomPickTeam(){
   selM.clear();selW.clear();psMan=null;psWoman=null;
@@ -2536,7 +2594,7 @@ function randomPickTeam(){
     ...MEN.A.map(s=>({...s,tier:'A',sc:scoreM(s)})),
     ...MEN.B.map(s=>({...s,tier:'B',sc:scoreM(s)})),
     ...MEN.C.map(s=>({...s,tier:'C',sc:scoreM(s)})),
-  ].filter(s=>s.fp!==null&&s.name!=='Event Seed #36');
+  ].filter(s=>s.fp!==null&&s.name!=='Melvin Ayala'||true);
 
   const usedHG=new Set(),tc={A:0,B:0,C:0},mp=[];
   const maxAttempts=200;
@@ -2724,28 +2782,41 @@ function scoreElSal(s, gender) {
   const isM = gender === 'men';
   const fp = isM ? (s.fp||0)/248.58*100 : (s.fp||0)/198.43*100;
   const hw = s.hw || 0;
-  const esl = (isM ? ESL_M[s.name] : ESL_W[s.name]) || s.eslN || 25;
+  const esl = (isM ? ESL_M[s.name] : ESL_W[s.name]) || s.eslN || 20;
   const rnk = isM ? MRANKS.find(r=>r.name===s.name) : WRANKS.find(r=>r.name===s.name);
-  const rank = rnk ? Math.max(20, 100-(((rnk.rank||20)-1)*2.5)) : 50;
-  // Punta Roca stance bonus — right-hander strongly favours regular footers
-  const stanceBonus = s.st==='Regular' ? 18 : 0;
-  // R1 penalty — Opening Round surfers lose 2 heats of PS scoring
-  const r1pen = (s.heat||s.seed||'').match(/R1|Qualify/) ? -15 : 0;
-  // Best heat score at this type of break
+  const rank = rnk ? Math.max(15, 100-(((rnk.rank||25)-1)*2.5)) : 45;
+  // RIGHT-HAND BREAK: Regular-footers surf frontside — strong systematic advantage
+  const stanceBonus = s.st==='Regular' ? 24 : -8; // penalise goofy, don't just bonus regular
+  // R1 starter: misses Opening + Elimination rounds, weaker seeding
+  const isR1 = !!(s.heat||s.seed||'').match(/R1|Qualify/);
+  const r1pen = isR1 ? -22 : 0;
   const ahs = Math.min(100,(s.ahs||0)*5.5);
-  return (fp*.30)+(hw*.20)+(esl*.22)+(stanceBonus*.13)+(rank*.08)+(r1pen*.04)+(ahs*.03);
+  // ESL WIN BONUS — past winner at THIS BREAK is a strong predictor
+  // But scale down for R1 starters (they lose scoring heats regardless)
+  let eslWinBonus = 0;
+  try {
+    const wins = ESL_HIST.filter(y => isM ? y.men[0].n===s.name : y.women[0].n===s.name).length;
+    const finals = ESL_HIST.filter(y => isM
+      ? y.men.some(p=>p.n===s.name&&p.p<=2)
+      : y.women.some(p=>p.n===s.name&&p.p<=2)).length;
+    const rawBonus = wins*20 + (finals-wins)*8;
+    eslWinBonus = isR1 ? rawBonus*0.4 : rawBonus; // R1 starters get 40% of ESL bonus
+  } catch(e){}
+  return (fp*.22)+(hw*.18)+(esl*.20)+(stanceBonus*.14)+(rank*.08)+(r1pen*.06)+(ahs*.03)+eslWinBonus;
 }
+
 
 function autoPickTeam(){
   selM.clear();selW.clear();psMan=null;psWoman=null;awaitingPS=false;
 
-  // ── MEN: best team by comprehensive El Salvador scoring ─────────────
+  // ── SCORING: scoreElSal already weights ESL history + Regular stance heavily ──
+  // ── MEN ────────────────────────────────────────────────────────────────────────
   const usedHG=new Set(), tc={A:0,B:0,C:0}, mp=[];
   const ms=[
     ...MEN.A.map(s=>({...s,tier:'A',sc:scoreElSal(s,'men')})),
     ...MEN.B.map(s=>({...s,tier:'B',sc:scoreElSal(s,'men')})),
     ...MEN.C.map(s=>({...s,tier:'C',sc:scoreElSal(s,'men')})),
-  ].filter(s=>s.name!=='Event Seed #36').sort((a,b)=>b.sc-a.sc);
+  ].filter(s=>s.name!=='Melvin Ayala'||true).sort((a,b)=>b.sc-a.sc);
 
   for(const s of ms){
     if(mp.length>=MTOTAL)break;
@@ -2754,11 +2825,17 @@ function autoPickTeam(){
     mp.push(s);tc[s.tier]++;if(s.hg)usedHG.add(s.hg);
   }
   mp.forEach(s=>selM.add(s.name));
-  // PS: highest scoring non-R1 surfer
-  const mPS=mp.filter(s=>!((s.heat||'').startsWith('R1'))).sort((a,b)=>b.sc-a.sc);
-  psMan=mPS[0]?.name||mp[0]?.name||null;
 
-  // ── WOMEN: same approach ──────────────────────────────────────────────
+  // PS: pick the highest-scoring non-R1 REGULAR-FOOTER in the team
+  // (Punta Roca is a right-hander — Regular PS is critical)
+  const mPS=mp
+    .filter(s=>!((s.heat||'').startsWith('R1')))
+    .sort((a,b)=>b.sc-a.sc);
+  // Prefer regular-footer if available, otherwise take top scorer
+  const mPSReg=mPS.filter(s=>s.st==='Regular');
+  psMan=(mPSReg[0]||mPS[0])?.name||null;
+
+  // ── WOMEN ───────────────────────────────────────────────────────────────────────
   const wtc={A:0,B:0,C:0}, wp=[];
   const ws=[
     ...WOMEN.A.map(s=>({...s,tier:'A',sc:scoreElSal(s,'women')})),
@@ -2769,16 +2846,23 @@ function autoPickTeam(){
   for(const s of ws){
     if(wp.length>=WTOTAL)break;
     if(wtc[s.tier]>=WCAPS[s.tier])continue;
+    // Women: no hg clash system — just tier caps
     wp.push(s);wtc[s.tier]++;
   }
   wp.forEach(s=>selW.add(s.name));
-  const wPS=wp.filter(s=>!((s.seed||'').includes('R1')||((s.seed||'').includes('Qualify')))).sort((a,b)=>b.sc-a.sc);
-  psWoman=wPS[0]?.name||wp[0]?.name||null;
+
+  // Women PS: highest-scoring seeded (R2) Regular-footer
+  const wPS=wp
+    .filter(s=>!((s.seed||'').includes('Qualify')&&!(s.seed||'').includes('Top 8')))
+    .sort((a,b)=>b.sc-a.sc);
+  const wPSReg=wPS.filter(s=>s.st==='Regular');
+  psWoman=(wPSReg[0]||wPS[0])?.name||null;
 
   tOpen.men={A:true,B:true,C:true};tOpen.women={A:true,B:true,C:true};
   renderPicks('men');renderPicks('women');renderPS();updateBar();
   showAutoModal(mp,wp);
 }
+
 function showAutoModal(mp,wp){
   const old=document.getElementById('app-modal');if(old)old.remove();
   const d=document.createElement('div');d.id='app-modal';d.className='modal-bg';
@@ -2806,10 +2890,125 @@ function renderPredictor(){
 }
 
 // ═══════════════ BRACKET/RANKINGS/HISTORY ═══════════════
-function renderBracket(){
-  document.getElementById('r1-heats').innerHTML=R1H.map(h=>`<div class="hcard"><div class="htitle">${h.id} · <span style="color:var(--ink2)">${h.note}</span></div><div class="hsurfers">${h.surfers.map((s,i)=>(i?'<span class="vs">vs</span>':'')+`<span class="stag mid">${s}</span>`).join('')}</div></div>`).join('');
-  document.getElementById('r2-heats').innerHTML=R2H.map(h=>{const c1=h.s1.includes('⭐')?'top':h.s1.includes('Winner')?'wld':'mid',c2=h.s2.includes('⭐')?'top':h.s2.includes('Winner')?'wld':'mid';return`<div class="hcard"><div class="htitle">${h.id}</div><div class="hsurfers"><span class="stag ${c1}">${h.s1}</span><span class="vs">vs</span><span class="stag ${c2}">${h.s2}</span></div></div>`;}).join('');
+function switchHeatDrawGender(g){
+  var men=document.getElementById('hd-men');
+  var women=document.getElementById('hd-women');
+  var tm=document.getElementById('hd-tab-men');
+  var tw=document.getElementById('hd-tab-women');
+  if(men){men.style.display=g==='men'?'block':'none';}
+  if(women){women.style.display=g==='women'?'block':'none';}
+  if(tm){tm.classList.toggle('active',g==='men');}
+  if(tw){tw.classList.toggle('active',g==='women');}
 }
+
+function _resolveHDName(id, ps){
+  // ps = predState
+  if(!id.startsWith('prev:')) return id;
+  var hid = id.replace('prev:','');
+  return ps[hid] || null;
+}
+
+function _heatCard(h, gender, ps, myPicks){
+  // Resolve names (may be TBD)
+  var s0 = _resolveHDName(h.surfers[0], ps);
+  var s1 = h.surfers[1] ? _resolveHDName(h.surfers[1], ps) : null;
+  var n0 = h.nat && h.nat[0] ? h.nat[0] : '';
+  var n1 = h.nat && h.nat[1] ? h.nat[1] : '';
+
+  var winner = ps[h.id] || null;
+  var isDone = !!winner;
+
+  function surferRow(name, nat, side){
+    if(!name){
+      return '<div class="hd-surfer-row hd-tbd">'+
+        '<div class="hd-surfer-placeholder">'+
+          '<div class="hd-placeholder-dot"></div>'+
+        '</div>'+
+        '<div class="hd-surfer-info">'+
+          '<div class="hd-surfer-name hd-tbd-name">Awaiting result…</div>'+
+        '</div>'+
+      '</div>';
+    }
+    var isWinner = isDone && winner === name;
+    var isLoser  = isDone && winner !== name;
+    var inMyTeam = myPicks && myPicks.has(name);
+    var flag = getFlag(nat);
+    var rank = getRank(name);
+    return '<div class="hd-surfer-row'+(isWinner?' hd-winner':isLoser?' hd-loser':'')+(inMyTeam?' hd-my-pick':'')+'">'+
+      '<div class="hd-surfer-flag">'+flag+'</div>'+
+      '<div class="hd-surfer-info">'+
+        '<div class="hd-surfer-name">'+name+(inMyTeam?' <span class="hd-my-tag">MY PICK</span>':'')+'</div>'+
+        (rank?'<div class="hd-surfer-rank">'+rank+'</div>':'')+
+      '</div>'+
+      (isWinner?'<div class="hd-adv-badge">ADV</div>':'')+
+    '</div>';
+  }
+
+  var prevLbl = '';
+  if(h.surfers[0]&&h.surfers[0].startsWith('prev:')) prevLbl = '← '+h.surfers[0].replace('prev:','').replace('WR1H','R1H').replace('WR2H','R2H').replace('R1H','R1H').replace('R2H','R2H');
+  if(!s0 && h.surfers[0] && h.surfers[0].startsWith('prev:')) n0 = '';
+  if(!s1 && h.surfers[1] && h.surfers[1].startsWith('prev:')) n1 = '';
+
+  return '<div class="hd-heat-card'+(isDone?' hd-done':'')+'">'+
+    '<div class="hd-heat-hdr">'+
+      '<div class="hd-heat-id">'+
+        '<span class="hd-heat-lbl">HEAT '+h.label.replace(/Heat /i,'')+'</span>'+
+      '</div>'+
+      (h.feedsLbl?'<div class="hd-feeds-lbl">'+h.feedsLbl+'</div>':'')+
+    '</div>'+
+    '<div class="hd-surfers">'+
+      surferRow(s0, n0, 'top')+
+      '<div class="hd-vs">VS</div>'+
+      surferRow(s1, n1, 'bot')+
+    '</div>'+
+  '</div>';
+}
+
+function renderHeatDrawSection(rounds, roundLabels, gender, ps, myPicks){
+  var html = '';
+  for(var ri=0; ri<rounds.length; ri++){
+    var rKey = rounds[ri];
+    var rLabel = roundLabels[rKey] || rKey;
+    var heats = BRACKET[rKey] || [];
+    if(!heats.length) continue;
+    var cols = heats.length <= 2 ? heats.length : heats.length <= 4 ? 2 : heats.length <= 6 ? 3 : 4;
+    html += '<div class="hd-round">'+
+      '<div class="hd-round-hdr">'+
+        '<span class="hd-round-lbl">'+rLabel+'</span>'+
+        '<span class="hd-round-count">'+heats.length+' heat'+(heats.length!==1?'s':'')+'</span>'+
+      '</div>'+
+      '<div class="hd-heats-grid" style="grid-template-columns:repeat('+Math.min(cols,4)+',1fr)">'+
+      heats.map(function(h){ return _heatCard(h, gender, ps, myPicks); }).join('')+
+      '</div>'+
+    '</div>';
+  }
+  return html;
+}
+
+function renderBracket(){
+  var myM = new Set([...selM]);
+  var myW = new Set([...selW]);
+
+  // Men's draw
+  var menHTML = renderHeatDrawSection(
+    ["R1","R2","R3","QF","SF","FINAL"],
+    {R1:"Round 1 — Sudden Death",R2:"Round 2 — Elimination",R3:"Round of 16",QF:"Quarterfinals",SF:"Semifinals",FINAL:"Final"},
+    'men', predState, myM
+  );
+  var el_men = document.getElementById('hd-men');
+  if(el_men) el_men.innerHTML = menHTML;
+
+  // Women's draw
+  var womenHTML = renderHeatDrawSection(
+    ["WR1","WR2","WQF","WSF","WFINAL"],
+    {WR1:"Round 1 — Opening Round",WR2:"Round 2",WQF:"Quarterfinals",WSF:"Semifinals",WFINAL:"Final"},
+    'women', predState, myW
+  );
+  var el_women = document.getElementById('hd-women');
+  if(el_women) el_women.innerHTML = womenHTML;
+}
+
+
 function renderRankings(){
   document.getElementById('rank-tbody-men').innerHTML=MRANKS.map(s=>{const ec=s.eslN>=75?'g':s.eslN>=50?'o':'b',r1=s.heat&&s.heat.startsWith('R1'),fl=getFlag(s.nat);return`<tr><td class="rnum">${s.rank}</td><td class="rname">${fl} ${s.name}</td><td style="font-size:10px;color:var(--ink3)">${flagIcon(s.nat)}</td><td class="rpts">${s.pts.toLocaleString()}</td><td style="font-size:9px;font-family:var(--font-mono);color:${r1?'var(--warn)':'var(--ink2)'}">${s.heat}</td><td class="resl ${ec}">${s.esl}</td><td style="font-size:10px;color:${s.st==='Regular'?'var(--ink2)':'var(--warn)'};">${s.st}</td></tr>`;}).join('');
   document.getElementById('rank-tbody-women').innerHTML=WRANKS.map(s=>{const isT8=s.rank<=8,fl=getFlag(s.nat);return`<tr><td class="rnum">${s.rank}</td><td class="rname">${fl} ${s.name}</td><td style="font-size:10px;color:var(--ink3)">${flagIcon(s.nat)}</td><td class="rpts">${s.pts.toLocaleString()}</td><td style="font-size:9px;font-family:var(--font-mono);color:${isT8?'var(--ink2)':'var(--ink3)'};">${s.seed}</td><td class="resl ${isT8?'g':'o'}">${s.esl}</td></tr>`;}).join('');
@@ -2878,11 +3077,25 @@ function autoSave(){
 }
 // Load team 1 on init — always start blank (clear any saved picks)
 function initTeams(){
-  // Restore saved team on page load (preserves picks across refreshes)
   selM.clear();selW.clear();psMan=null;psWoman=null;awaitingPS=false;
-  try{ loadTeam(currentTeam); }catch(e){}
   renderPicks('men');renderPicks('women');renderPS();updateBar();
   renderTeamSummary();
+  // Pre-seed Team 1 with official WSL picks (only if user hasn't saved it yet)
+  try{
+    var t1key=teamKey(1,'data');
+    var existing=safeStorage.getItem(t1key);
+    var isDefault=!existing||JSON.parse(existing).selM.length===0;
+    if(isDefault){
+      var mPicks=["Griffin Colapinto","Ethan Ewing","Filipe Toledo"];
+      mPicks.push("Connor O’Leary","Luke Thompson","Matt McGillivray");
+      var wPicks=["Gabriela Bryan","Carissa Moore","Stephanie Gilmore"];
+      wPicks.push("Isabella Nichols","Sally Fitzgibbons","Kirra Pinkerton");
+      safeStorage.setItem(t1key,JSON.stringify({
+        selM:mPicks,selW:wPicks,
+        psMan:"Griffin Colapinto",psWoman:"Gabriela Bryan"
+      }));
+    }
+  }catch(e){}
 }
 // ═══════════════ COLLAPSIBLE SECTIONS ═══════════════
 function toggleSection(wrapId, bodyId){
@@ -3087,7 +3300,12 @@ const EVENTS = [
      {p:2, n:"Sawyer Lindblad",       c:"USA", final:"16.67", rank:5,  note:"9.00 had Moore on the ropes. Rising force — 2nd career Final."},
      {p:3, n:"Bettylou Sakura Johnson",c:"HAW",final:"SF: 8.43", rank:7, note:"Lost SF to Moore 8.43–19.00 (highest heat score of 2026 season)."},
    ]}
-];
+,
+  {id:'elsalvador', stop:5, status:'current', wave:'Right-hand point', wind:'E offshore',
+   name:'Surf City El Salvador Pro',
+   loc:'Punta Roca, La Libertad, El Salvador', dates:'Jun 5–15, 2026', country:'🇸🇻 El Salvador',
+   men:[], women:[],
+   highlights:{title:'El Salvador Pro 2026',facts:[]}}];
 
 // ── 2026 WSL SEASON STATS ─────────────────────────────────────────────
 const WSL_STATS = {
@@ -3668,7 +3886,6 @@ document.addEventListener('touchend',function(e){
 renderHome();
 renderHighlights();
 initTeams();
-
 </script>
 </body>
 </html>
