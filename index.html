@@ -1177,6 +1177,95 @@ body.ocean .tbest-section{border-color:rgba(100,180,210,.3)}
 #panel-picks .collapsible-body{transition:max-height .25s ease,opacity .2s ease;max-height:4000px;opacity:1;overflow:visible}
 #panel-picks .collapsible-body.collapsed{max-height:0!important;opacity:0;overflow:hidden;pointer-events:none}
 .ptable tbody tr[data-action="pick"]{cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+
+
+/* ── Power Surfer — integrated premium design ── */
+.ps-section{padding:0}
+.ps-section-hdr{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.ps-section-title{font-size:9px;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);font-weight:600}
+.ps-section-sub{font-size:8px;color:var(--ink3);font-family:var(--font-mono);margin-top:2px}
+.ps-live-badge{font-size:7px;font-family:var(--font-mono);padding:2px 7px;border-radius:var(--r-pill);border:1px solid var(--border2);color:var(--ink3);letter-spacing:.06em}
+
+/* PS desc */
+.ps-desc{font-size:9px;color:var(--ink3);padding:10px 14px;border-bottom:1px solid var(--border);line-height:1.6}
+
+/* Rank toggle */
+.ps-rank-row{display:flex;gap:5px;padding:10px 14px;border-bottom:1px solid var(--border)}
+.ps-rank-btn{flex:1;padding:6px 8px;border-radius:var(--r-btn);border:1px solid var(--border);background:transparent;color:var(--ink3);font-family:var(--font-mono);font-size:8px;cursor:pointer;letter-spacing:.04em;-webkit-tap-highlight-color:transparent;transition:all .15s}
+.ps-rank-btn.active{background:rgba(255,255,255,.07);border-color:var(--border2);color:var(--ink)}
+
+/* Status bar — minimal two-column current selection */
+.ps-status-bar{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+.ps-status-slot{padding:10px 14px}
+.ps-status-slot+.ps-status-slot{border-left:1px solid var(--border)}
+.ps-status-lbl{font-size:7px;font-family:var(--font-mono);color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.ps-status-val{font-size:11px;font-weight:600;color:var(--ink);font-family:var(--font-ui);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ps-status-val.set{color:rgba(212,175,55,.9)}
+
+/* Pick grid — your surfers for PS assignment */
+.ps-pick-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.ps-card{display:flex;align-items:center;gap:9px;padding:9px 10px;background:var(--bg2);cursor:pointer;-webkit-tap-highlight-color:transparent;border-bottom:1px solid var(--border);transition:background .12s}
+.ps-card:active{background:var(--bg3)}
+.ps-card.sel{background:rgba(212,175,55,.06)}
+.ps-card-left{flex:1;min-width:0}
+.ps-cn{font-size:10px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ps-cn.sel-name{color:rgba(212,175,55,.9)}
+.ps-cp{font-size:8px;color:var(--ink3);font-family:var(--font-mono);margin-top:2px}
+.ps-cb{font-size:13px;flex-shrink:0;color:var(--ink3);opacity:.4}
+.ps-card.sel .ps-cb{color:rgba(212,175,55,.9);opacity:1}
+.ps-empty{font-size:9px;color:var(--ink3);font-family:var(--font-mono);padding:14px 12px;text-align:center;background:var(--bg2)}
+.psa-col-lbl{font-size:7px;font-family:var(--font-mono);color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;padding:8px 10px 6px;border-bottom:1px solid var(--border);background:var(--bg3)}
+
+/* Analysis ranked list */
+.psa-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.psa-grid>div{background:var(--bg2);padding:12px}
+.psa-section-lbl{font-size:7px;font-family:var(--font-mono);color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--border)}
+
+/* Analysis row — clean data row */
+.psa-row{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.psa-row:last-child{border-bottom:none}
+.psa-row.top-pick{}
+.psa-name-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.psa-rank{font-size:8px;font-family:var(--font-mono);color:var(--ink3);min-width:14px}
+.psa-name{font-size:11px;font-weight:600;color:var(--ink);font-family:var(--font-ui);flex:1}
+.psa-score{font-size:10px;font-weight:700;color:var(--ink2);font-family:var(--font-mono)}
+.psa-bar-wrap{height:2px;background:rgba(255,255,255,.07);border-radius:1px;margin:5px 0;overflow:hidden}
+.psa-bar-fill{height:100%;border-radius:1px;background:rgba(255,255,255,.2)}
+.psa-bar-fill.gold{background:rgba(212,175,55,.55)}
+.psa-meta{font-size:8px;color:var(--ink3);font-family:var(--font-mono);line-height:1.5;margin-bottom:5px}
+.psa-reason{font-size:9px;color:var(--ink3);line-height:1.55;margin-bottom:6px}
+.psa-set-btn{display:inline-block;font-size:8px;font-family:var(--font-mono);color:var(--ink3);padding:4px 8px;border:1px solid var(--border);border-radius:var(--r-btn);cursor:pointer;letter-spacing:.03em;-webkit-tap-highlight-color:transparent;transition:all .12s}
+.psa-set-btn:active{background:var(--bg3)}
+.psa-set-btn.active{color:rgba(212,175,55,.9);border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.07)}
+.psa-not-in-team{font-size:8px;color:var(--ink3);font-family:var(--font-mono);opacity:.5;font-style:italic}
+.psa-rec-badge{font-size:7px;font-family:var(--font-mono);color:rgba(212,175,55,.8);letter-spacing:.06em;padding:1px 5px;border:1px solid rgba(212,175,55,.2);border-radius:3px;text-transform:uppercase;flex-shrink:0}
+.psa-tag{font-size:7px;font-family:var(--font-mono);color:var(--ink3);padding:1px 5px;border:1px solid var(--border);border-radius:3px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
+
+/* Rec summary block */
+.ps-rec-summary{padding:12px 14px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ps-rec-block{}
+.ps-rec-eyebrow{font-size:7px;font-family:var(--font-mono);color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.ps-rec-name{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.ps-rec-meta{font-size:8px;color:var(--ink3);font-family:var(--font-mono);margin-bottom:5px;line-height:1.5}
+.ps-rec-reason{font-size:8px;color:var(--ink3);line-height:1.55}
+.ps-rec-cta{margin-top:7px;font-size:8px;font-family:var(--font-mono);color:rgba(212,175,55,.8);padding:4px 8px;border:1px solid rgba(212,175,55,.2);border-radius:var(--r-btn);cursor:pointer;display:inline-block;-webkit-tap-highlight-color:transparent;background:rgba(212,175,55,.06)}
+.ps-rec-cta.current{color:rgba(212,175,55,.9);background:rgba(212,175,55,.1);border-color:rgba(212,175,55,.3)}
+
+/* Inline PS button in pick rows */
+.ps-inline-btn{display:inline-flex;align-items:center;gap:3px;font-size:7px;font-family:var(--font-mono);padding:1px 5px;border-radius:4px;border:1px solid var(--border);color:var(--ink3);cursor:pointer;-webkit-tap-highlight-color:transparent;vertical-align:middle;margin-left:5px;letter-spacing:.03em;transition:all .12s}
+.ps-inline-btn.active{color:rgba(212,175,55,.9);border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.08)}
+
+@media(max-width:600px){
+  .ps-pick-wrap{grid-template-columns:1fr}
+  .psa-grid{grid-template-columns:1fr}
+  .ps-rec-summary{grid-template-columns:1fr}
+  .ps-rank-btn{font-size:8px;padding:6px 4px}
+}
+@media(max-width:480px){
+  .ps-status-bar{grid-template-columns:1fr}
+  .ps-status-slot+.ps-status-slot{border-left:none;border-top:1px solid var(--border)}
+}
+
 </style>
 
 </head>
@@ -1541,7 +1630,7 @@ body.ocean .tbest-section{border-color:rgba(100,180,210,.3)}
     <!-- Power Surfer -->
     <div class="section-lbl-wrap" id="wrap-ps-sec">
       <div class="section-lbl dropdown-trigger" onclick="toggleSection('wrap-ps-sec','body-ps-sec')">
-        Power Surfer — Analysis &amp; Pick Rank
+        Power Surfer — Analysis &amp; Picks
         <svg class="chev-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 4 6 8 10 4"/></svg>
       </div>
       <div class="collapsible-body" id="body-ps-sec">
@@ -1550,15 +1639,29 @@ body.ocean .tbest-section{border-color:rgba(100,180,210,.3)}
           <!-- Header -->
           <div class="ps-section-hdr">
             <div>
-              <div class="ps-section-title">Power Surfer</div>
-              <div class="ps-section-sub">2× points for the entire event</div>
+              <div class="ps-section-title">Power Surfer Analysis</div>
+              <div class="ps-section-sub">2× Fantasy points · Round 2 through Final</div>
             </div>
-            <div class="ps-live-badge">2× Every Heat</div>
           </div>
+
+          <!-- Current PS status bar -->
+          <div class="ps-status-bar">
+            <div class="ps-status-slot">
+              <div class="ps-status-lbl">Men's Power Surfer</div>
+              <div class="ps-status-val" id="ps-cur-man">—</div>
+            </div>
+            <div class="ps-status-slot">
+              <div class="ps-status-lbl">Women's Power Surfer</div>
+              <div class="ps-status-val" id="ps-cur-woman">—</div>
+            </div>
+          </div>
+
+          <!-- Recommendation summary + Insights — filled by renderPSAnalysis() -->
+          <div id="ps-verdict"></div>
 
           <!-- Description -->
           <div class="ps-desc">
-            Pick <strong>one man + one woman</strong> as Power Surfers. They earn <strong style="color:rgba(212,175,55,.9)">2× Fantasy points</strong> for every heat they surf — Opening Round through the Final. Choose wisely.
+            2× Fantasy points from Round 2 through the Final. Tap ⚡ next to any selected surfer in My Picks above, or choose from your team below.
           </div>
 
           <!-- Analysis rank toggle -->
@@ -1578,11 +1681,11 @@ body.ocean .tbest-section{border-color:rgba(100,180,210,.3)}
         <!-- Your picks — tap to assign PS — filled by renderPS() -->
         <div class="ps-pick-wrap">
           <div>
-            <div class="psa-col-lbl">Men — tap to assign Power Surfer</div>
+            <div class="psa-col-lbl">🏄 Men — tap to set Power Surfer</div>
             <div id="ps-men-grid"></div>
           </div>
           <div>
-            <div class="psa-col-lbl">Women — tap to assign Power Surfer</div>
+            <div class="psa-col-lbl">🏄 Women — tap to set Power Surfer</div>
             <div id="ps-women-grid"></div>
           </div>
         </div>
@@ -1819,78 +1922,79 @@ const safeSession={getItem(k){return _storageOK?sessionStorage.getItem(k):(_mem[
 // ═══════════════ DATA ═══════════════
 const MEN={
   A:[
-    {name:"Ethan Ewing",nat:"AUS",fp:191.03,avg:47.76,ex:4,mhs:17.50,ahs:13.21,hw:70.00,heat:"R2H2",hg:"r2h2",st:"Regular",esl:"★★★☆",eslN:70},
-    {name:"Gabriel Medina",nat:"BRA",fp:248.58,avg:62.15,ex:4,mhs:17.40,ahs:14.59,hw:69.23,heat:"R2H13",hg:"r2h13",st:"Goofy",esl:"★★☆",eslN:40},
-    {name:"George Pittar",nat:"AUS",fp:199.17,avg:49.79,ex:4,mhs:15.60,ahs:14.02,hw:70.00,heat:"R2H12",hg:"r2h12",st:"Regular",esl:"★★★",eslN:65},
-    {name:"Griffin Colapinto",nat:"USA",fp:206.45,avg:51.61,ex:4,mhs:17.10,ahs:13.41,hw:63.64,heat:"R2H16",hg:"r2h16",st:"Regular",esl:"★★★★★",eslN:95},
-    {name:"Italo Ferreira",nat:"BRA",fp:242.34,avg:60.59,ex:4,mhs:17.50,ahs:14.11,hw:76.92,heat:"R2H9",hg:"r2h9",st:"Goofy",esl:"★★★★",eslN:80},
-    {name:"Miguel Pupo",nat:"BRA",fp:222.19,avg:55.55,ex:4,mhs:16.77,ahs:13.61,hw:75.00,heat:"R2H3",hg:"r2h3",st:"Goofy",esl:"★★☆",eslN:40},
-    {name:"Samuel Pupo",nat:"BRA",fp:213.14,avg:53.29,ex:4,mhs:18.90,ahs:14.02,hw:63.64,heat:"R2H7",hg:"r2h7",st:"Regular",esl:"★★☆",eslN:45},
-    {name:"Yago Dora",nat:"BRA",fp:240.60,avg:60.15,ex:4,mhs:17.76,ahs:13.97,hw:69.23,heat:"R2H6",hg:"r2h6",st:"Goofy",esl:"★★★☆",eslN:72},
+    {name:"Ethan Ewing",nat:"AUS",fp:191.03,avg:47.76,ex:4,exc:2,mhs:17.50,ahs:13.21,hw:70.00,heat:"R2H2",hg:"r2h2",st:"Regular",esl:"★★★☆",eslN:70},
+    {name:"Gabriel Medina",nat:"BRA",fp:248.58,avg:62.15,ex:4,exc:2,mhs:17.40,ahs:14.59,hw:69.23,heat:"R2H13",hg:"r2h13",st:"Goofy",esl:"★★☆",eslN:40},
+    {name:"George Pittar",nat:"AUS",fp:199.17,avg:49.79,ex:4,exc:0,mhs:15.60,ahs:14.02,hw:70.00,heat:"R2H12",hg:"r2h12",st:"Regular",esl:"★★★",eslN:65},
+    {name:"Griffin Colapinto",nat:"USA",fp:206.45,avg:51.61,ex:4,exc:1,mhs:17.10,ahs:13.41,hw:63.64,heat:"R2H16",hg:"r2h16",st:"Regular",esl:"★★★★★",eslN:95},
+    {name:"Italo Ferreira",nat:"BRA",fp:242.34,avg:60.59,ex:4,exc:2,mhs:17.50,ahs:14.11,hw:76.92,heat:"R2H9",hg:"r2h9",st:"Goofy",esl:"★★★★",eslN:80},
+    {name:"Miguel Pupo",nat:"BRA",fp:222.19,avg:55.55,ex:4,exc:1,mhs:16.77,ahs:13.61,hw:75.00,heat:"R2H3",hg:"r2h3",st:"Goofy",esl:"★★☆",eslN:40},
+    {name:"Samuel Pupo",nat:"BRA",fp:213.14,avg:53.29,ex:4,exc:1,mhs:18.90,ahs:14.02,hw:63.64,heat:"R2H7",hg:"r2h7",st:"Regular",esl:"★★☆",eslN:45},
+    {name:"Yago Dora",nat:"BRA",fp:240.60,avg:60.15,ex:4,exc:4,mhs:17.76,ahs:13.97,hw:69.23,heat:"R2H6",hg:"r2h6",st:"Goofy",esl:"★★★☆",eslN:72},
   ],
   B:[
-    {name:"Alejo Muniz",nat:"BRA",fp:120.69,avg:30.17,ex:4,mhs:15.50,ahs:10.29,hw:33.33,heat:"R2H4",hg:"r2h4",st:"Regular",esl:"★★☆",eslN:40},
-    {name:"Barron Mamiya",nat:"HAW",fp:129.52,avg:32.38,ex:4,mhs:14.00,ahs:11.77,hw:33.33,heat:"R2H15",hg:"r2h15",st:"Regular",esl:"★★",eslN:35},
-    {name:"Callum Robson",nat:"AUS",fp:80.30,avg:20.08,ex:4,mhs:14.60,ahs:10.97,hw:33.33,heat:"R2H2",hg:"r2h2",st:"Regular",esl:"★★",eslN:30},
-    {name:"Cole Houshmand",nat:"USA",fp:137.04,avg:34.26,ex:4,mhs:17.00,ahs:13.02,hw:33.33,heat:"R2H14",hg:"r2h14",st:"Goofy",esl:"★★★",eslN:55},
-    {name:"Connor O'Leary",nat:"AUS",fp:182.72,avg:45.68,ex:4,mhs:16.97,ahs:13.75,hw:55.56,heat:"R2H15",hg:"r2h15",st:"Goofy",esl:"★★",eslN:38},
-    {name:"Crosby Colapinto",nat:"USA",fp:141.73,avg:35.43,ex:4,mhs:14.37,ahs:11.83,hw:42.86,heat:"R2H10",hg:"r2h10",st:"Regular",esl:"★★★",eslN:52},
-    {name:"Filipe Toledo",nat:"BRA",fp:216.03,avg:54.01,ex:4,mhs:18.94,ahs:15.71,hw:60.00,heat:"R2H11",hg:"r2h11",st:"Regular",esl:"★★★★",eslN:88},
-    {name:"Jack Robinson",nat:"AUS",fp:144.70,avg:36.18,ex:4,mhs:16.10,ahs:12.25,hw:42.86,heat:"R2H14",hg:"r2h14",st:"Regular",esl:"★★★☆",eslN:70},
-    {name:"Jake Marshall",nat:"USA",fp:131.58,avg:32.90,ex:4,mhs:15.83,ahs:12.11,hw:33.33,heat:"R2H1",hg:"r2h1",st:"Regular",esl:"★★☆",eslN:42},
-    {name:"Joao Chianca",nat:"BRA",fp:114.91,avg:28.73,ex:4,mhs:12.80,ahs:11.20,hw:20.00,heat:"R2H12",hg:"r2h12",st:"Regular",esl:"★★★",eslN:52},
-    {name:"Joel Vaughan",nat:"AUS",fp:129.10,avg:32.28,ex:4,mhs:13.06,ahs:11.70,hw:33.33,heat:"R2H7",hg:"r2h7",st:"Regular",esl:"★★",eslN:32},
-    {name:"Kanoa Igarashi",nat:"JPN",fp:165.89,avg:41.47,ex:4,mhs:15.23,ahs:13.37,hw:50.00,heat:"R2H4",hg:"r2h4",st:"Regular",esl:"★★☆",eslN:42},
-    {name:"Kauli Vaast",nat:"PYF",fp:135.95,avg:33.99,ex:4,mhs:12.84,ahs:0.00,hw:33.33,heat:"R2H11",hg:"r2h11",st:"Goofy",esl:"★★",eslN:35},
-    {name:"Leonardo Fioravanti",nat:"ITA",fp:187.72,avg:46.93,ex:4,mhs:16.03,ahs:12.88,hw:60.00,heat:"R2H8",hg:"r2h8",st:"Regular",esl:"★★★☆",eslN:65},
-    {name:"Liam O'Brien",nat:"AUS",fp:160.72,avg:40.18,ex:4,mhs:17.50,ahs:13.18,hw:60.00,heat:"R2H1",hg:"r2h1",st:"Regular",esl:"★★",eslN:30},
-    {name:"Marco Mignot",nat:"FRA",fp:147.15,avg:36.79,ex:4,mhs:13.97,ahs:12.60,hw:42.86,heat:"R2H5",hg:"r2h5",st:"Regular",esl:"★★",eslN:30},
-    {name:"Mateus Herdy",nat:"BRA",fp:116.42,avg:29.11,ex:4,mhs:15.33,ahs:12.74,hw:50.00,heat:"R2H8",hg:"r2h8",st:"Regular",esl:"★",eslN:15},
-    {name:"Morgan Cibilic",nat:"AUS",fp:158.41,avg:39.60,ex:4,mhs:15.80,ahs:12.84,hw:60.00,heat:"R2H10",hg:"r2h10",st:"Regular",esl:"★★★",eslN:55},
-    {name:"Rio Waida",nat:"INA",fp:151.47,avg:37.87,ex:4,mhs:15.20,ahs:13.22,hw:42.86,heat:"R2H5",hg:"r2h5",st:"Regular",esl:"★★★",eslN:55},
+    {name:"Alejo Muniz",nat:"BRA",fp:120.69,avg:30.17,ex:4,exc:0,mhs:15.50,ahs:10.29,hw:33.33,heat:"R2H4",hg:"r2h4",st:"Regular",esl:"★★☆",eslN:40},
+    {name:"Barron Mamiya",nat:"HAW",fp:129.52,avg:32.38,ex:4,exc:0,mhs:14.00,ahs:11.77,hw:33.33,heat:"R2H15",hg:"r2h15",st:"Regular",esl:"★★",eslN:35},
+    {name:"Callum Robson",nat:"AUS",fp:80.30,avg:20.08,ex:4,exc:0,mhs:14.60,ahs:10.97,hw:33.33,heat:"R2H2",hg:"r2h2",st:"Regular",esl:"★★",eslN:30},
+    {name:"Cole Houshmand",nat:"USA",fp:137.04,avg:34.26,ex:4,exc:1,mhs:17.00,ahs:13.02,hw:33.33,heat:"R2H14",hg:"r2h14",st:"Goofy",esl:"★★★",eslN:55},
+    {name:"Connor O'Leary",nat:"AUS",fp:182.72,avg:45.68,ex:4,exc:2,mhs:16.97,ahs:13.75,hw:55.56,heat:"R2H15",hg:"r2h15",st:"Goofy",esl:"★★",eslN:38},
+    {name:"Crosby Colapinto",nat:"USA",fp:141.73,avg:35.43,ex:4,exc:0,mhs:14.37,ahs:11.83,hw:42.86,heat:"R2H10",hg:"r2h10",st:"Regular",esl:"★★★",eslN:52},
+    {name:"Filipe Toledo",nat:"BRA",fp:216.03,avg:54.01,ex:4,exc:2,mhs:18.94,ahs:15.71,hw:60.00,heat:"R2H11",hg:"r2h11",st:"Regular",esl:"★★★★",eslN:88},
+    {name:"Jack Robinson",nat:"AUS",fp:144.70,avg:36.18,ex:4,exc:1,mhs:16.10,ahs:12.25,hw:42.86,heat:"R2H14",hg:"r2h14",st:"Regular",esl:"★★★☆",eslN:70},
+    {name:"Jake Marshall",nat:"USA",fp:131.58,avg:32.90,ex:4,exc:0,mhs:15.83,ahs:12.11,hw:33.33,heat:"R2H1",hg:"r2h1",st:"Regular",esl:"★★☆",eslN:42},
+    {name:"Joao Chianca",nat:"BRA",fp:114.91,avg:28.73,ex:4,exc:0,mhs:12.80,ahs:11.20,hw:20.00,heat:"R2H12",hg:"r2h12",st:"Regular",esl:"★★★",eslN:52},
+    {name:"Joel Vaughan",nat:"AUS",fp:129.10,avg:32.28,ex:4,exc:0,mhs:13.06,ahs:11.70,hw:33.33,heat:"R2H7",hg:"r2h7",st:"Regular",esl:"★★",eslN:32},
+    {name:"Jordy Smith",nat:"RSA",fp:118.17,avg:39.39,ex:3,exc:0,mhs:14.80,ahs:12.46,hw:25.00,heat:"R2",hg:"",st:"Regular",seed:"R2",esl:"★★★★★",eslN:90},
+    {name:"Kanoa Igarashi",nat:"JPN",fp:165.89,avg:41.47,ex:4,exc:0,mhs:15.23,ahs:13.37,hw:50.00,heat:"R2H4",hg:"r2h4",st:"Regular",esl:"★★☆",eslN:42},
+    {name:"Kauli Vaast",nat:"PYF",fp:135.95,avg:33.99,ex:4,exc:0,mhs:15.83,ahs:12.84,hw:33.33,heat:"R2H11",hg:"r2h11",st:"Goofy",esl:"★★",eslN:35},
+    {name:"Leonardo Fioravanti",nat:"ITA",fp:187.72,avg:46.93,ex:4,exc:1,mhs:16.03,ahs:12.88,hw:60.00,heat:"R2H8",hg:"r2h8",st:"Regular",esl:"★★★☆",eslN:65},
+    {name:"Liam O'Brien",nat:"AUS",fp:160.72,avg:40.18,ex:4,exc:1,mhs:17.50,ahs:13.18,hw:60.00,heat:"R2H1",hg:"r2h1",st:"Regular",esl:"★★",eslN:30},
+    {name:"Marco Mignot",nat:"FRA",fp:147.15,avg:36.79,ex:4,exc:0,mhs:13.97,ahs:12.60,hw:42.86,heat:"R2H5",hg:"r2h5",st:"Regular",esl:"★★",eslN:30},
+    {name:"Mateus Herdy",nat:"BRA",fp:116.42,avg:29.11,ex:4,exc:0,mhs:15.33,ahs:12.74,hw:50.00,heat:"R2H8",hg:"r2h8",st:"Regular",esl:"★",eslN:15},
+    {name:"Morgan Cibilic",nat:"AUS",fp:158.41,avg:39.60,ex:4,exc:0,mhs:15.80,ahs:12.84,hw:60.00,heat:"R2H10",hg:"r2h10",st:"Regular",esl:"★★★",eslN:55},
+    {name:"Rio Waida",nat:"INA",fp:151.47,avg:37.87,ex:4,exc:0,mhs:15.20,ahs:13.22,hw:42.86,heat:"R2H5",hg:"r2h5",st:"Regular",esl:"★★★",eslN:55},
   ],
   C:[
-    {name:"Matt McGillivray",nat:"RSA",fp:null,avg:null,ex:null,mhs:null,ahs:null,hw:null,heat:"R1H1",hg:"r1h1",st:"Regular",esl:"★★★",eslN:52},
-    {name:"Alan Cleland",nat:"IRL",fp:88.93,avg:22.23,ex:4,mhs:10.50,ahs:7.50,hw:0.00,heat:"R2H16",hg:"r2h16",st:"Regular",esl:"★★★☆",eslN:62},
-    {name:"Bryan Perez",nat:"SLV",fp:null,avg:null,ex:null,mhs:null,ahs:null,hw:null,heat:"R1H3",hg:"r1h3",st:"Regular",esl:"★★★★",eslN:75},
-    {name:"Eli Hanneman",nat:"HAW",fp:96.53,avg:24.13,ex:4,mhs:13.50,ahs:10.42,hw:20.00,heat:"R1H3",hg:"r1h3",st:"Regular",esl:"★★",eslN:30},
-    {name:"Luke Thompson",nat:"RSA",fp:83.71,avg:20.93,ex:4,mhs:14.67,ahs:11.96,hw:42.86,heat:"R1H2",hg:"r1h2",st:"Regular",esl:"★★",eslN:28},
-    {name:"Oscar Berry",nat:"AUS",fp:43.30,avg:10.83,ex:4,mhs:13.33,ahs:10.83,hw:0.00,heat:"R1H4",hg:"r1h4",st:"Regular",esl:"★★",eslN:25},
-    {name:"Ramzi Boukhiam",nat:"MAR",fp:63.49,avg:15.87,ex:4,mhs:13.83,ahs:12.70,hw:20.00,heat:"R1H1",hg:"r1h1",st:"Regular",esl:"★",eslN:12},
-    {name:"Seth Moniz",nat:"HAW",fp:98.20,avg:24.55,ex:4,mhs:12.10,ahs:10.75,hw:20.00,heat:"R1H4",hg:"r1h4",st:"Regular",esl:"★★★",eslN:50},
-    {name:"Melvin Ayala",nat:"SLV",fp:null,avg:null,ex:null,mhs:null,ahs:null,hw:null,heat:"R1H2",hg:"r1h2",st:"Goofy",seed:"R1 Qualify",esl:"★★★★",eslN:78},
+    {name:"Matt McGillivray",nat:"RSA",fp:null,avg:null,ex:null,exc:null,mhs:null,ahs:null,hw:null,heat:"R1H1",hg:"r1h1",st:"Regular",esl:"★★★",eslN:52},
+    {name:"Alan Cleland",nat:"IRL",fp:88.93,avg:22.23,ex:4,exc:0,mhs:10.50,ahs:7.50,hw:0.00,heat:"R2H16",hg:"r2h16",st:"Regular",esl:"★★★☆",eslN:62},
+    {name:"Bryan Perez",nat:"SLV",fp:null,avg:null,ex:null,exc:null,mhs:null,ahs:null,hw:null,heat:"R1H3",hg:"r1h3",st:"Regular",esl:"★★★★",eslN:75},
+    {name:"Eli Hanneman",nat:"HAW",fp:96.53,avg:24.13,ex:4,exc:0,mhs:13.50,ahs:10.42,hw:20.00,heat:"R1H3",hg:"r1h3",st:"Regular",esl:"★★",eslN:30},
+    {name:"Luke Thompson",nat:"RSA",fp:83.71,avg:20.93,ex:4,exc:0,mhs:14.67,ahs:11.96,hw:42.86,heat:"R1H2",hg:"r1h2",st:"Regular",esl:"★★",eslN:28},
+    {name:"Oscar Berry",nat:"AUS",fp:43.30,avg:10.83,ex:4,exc:0,mhs:13.33,ahs:10.83,hw:0.00,heat:"R1H4",hg:"r1h4",st:"Regular",esl:"★★",eslN:25},
+    {name:"Ramzi Boukhiam",nat:"MAR",fp:63.49,avg:15.87,ex:4,exc:0,mhs:13.83,ahs:12.70,hw:20.00,heat:"R1H1",hg:"r1h1",st:"Regular",esl:"★",eslN:12},
+    {name:"Seth Moniz",nat:"HAW",fp:98.20,avg:24.55,ex:4,exc:0,mhs:12.10,ahs:10.75,hw:20.00,heat:"R1H4",hg:"r1h4",st:"Regular",esl:"★★★",eslN:50},
+    {name:"Melvin Ayala",nat:"SLV",fp:null,avg:null,ex:null,exc:null,mhs:null,ahs:null,hw:null,heat:"R1H2",hg:"r1h2",st:"Goofy",seed:"R1 Qualify",esl:"★★★★",eslN:78},
   ]
 };
 const WOMEN={
   A:[
-    {name:"Bettylou Sakura Johnson",nat:"HAW",fp:140.32,avg:46.77,ex:3,mhs:11.53,ahs:10.08,hw:25.00,seed:"R2 Top 8",esl:"★★★",eslN:50,hg:"w_r2h6",heat:"R2H6",st:"Regular"},
-    {name:"Caitlin Simmers",nat:"USA",fp:151.29,avg:50.43,ex:3,mhs:14.50,ahs:12.61,hw:57.14,seed:"R2 Top 8",esl:"★★★☆",eslN:62,hg:"w_r2h8",heat:"R2H8",st:"Regular"},
-    {name:"Carissa Moore",nat:"HAW",fp:167.53,avg:55.84,ex:3,mhs:15.07,ahs:11.70,hw:57.14,seed:"R2 Top 8",esl:"★★★☆",eslN:68,hg:"w_r2h4",heat:"R2H4",st:"Regular"},
-    {name:"Gabriela Bryan",nat:"HAW",fp:198.43,avg:66.14,ex:3,mhs:16.66,ahs:14.20,hw:75.00,seed:"R2 Top 8",esl:"★★★★",eslN:90,hg:"w_r2h1",heat:"R2H1",st:"Regular"},
-    {name:"Lakey Peterson",nat:"USA",fp:153.61,avg:51.20,ex:3,mhs:15.83,ahs:11.18,hw:77.78,seed:"R2 Top 8",esl:"★★★★",eslN:75,hg:"w_r2h7",heat:"R2H7",st:"Regular"},
-    {name:"Luana Silva",nat:"BRA",fp:197.71,avg:65.90,ex:3,mhs:16.00,ahs:13.02,hw:72.73,seed:"R2 Top 8",esl:"★★★",eslN:55,hg:"w_r2h3",heat:"R2H3",st:"Regular"},
-    {name:"Molly Picklum",nat:"AUS",fp:189.86,avg:63.29,ex:3,mhs:16.50,ahs:13.30,hw:62.50,seed:"R2 Top 8",esl:"★★★☆",eslN:65,hg:"w_r2h5",heat:"R2H5",st:"Regular"},
-    {name:"Sawyer Lindblad",nat:"USA",fp:186.36,avg:62.12,ex:3,mhs:14.83,ahs:11.88,hw:66.67,seed:"R2 Top 8",esl:"★★★",eslN:58,hg:"w_r2h2",heat:"R2H2",st:"Goofy"},
+    {name:"Bettylou Sakura Johnson",nat:"HAW",fp:140.32,avg:46.77,ex:3,exc:0,mhs:11.53,ahs:10.08,hw:25.00,seed:"R2 Top 8",esl:"★★★",eslN:50,hg:"w_r2h6",heat:"R2H6",st:"Regular"},
+    {name:"Caitlin Simmers",nat:"USA",fp:151.29,avg:50.43,ex:3,exc:0,mhs:14.50,ahs:12.61,hw:57.14,seed:"R2 Top 8",esl:"★★★☆",eslN:62,hg:"w_r2h8",heat:"R2H8",st:"Regular"},
+    {name:"Carissa Moore",nat:"HAW",fp:167.53,avg:55.84,ex:3,exc:0,mhs:15.07,ahs:11.70,hw:57.14,seed:"R2 Top 8",esl:"★★★☆",eslN:68,hg:"w_r2h4",heat:"R2H4",st:"Regular"},
+    {name:"Gabriela Bryan",nat:"HAW",fp:198.43,avg:66.14,ex:3,exc:1,mhs:16.66,ahs:14.20,hw:75.00,seed:"R2 Top 8",esl:"★★★★",eslN:90,hg:"w_r2h1",heat:"R2H1",st:"Regular"},
+    {name:"Lakey Peterson",nat:"USA",fp:153.61,avg:51.20,ex:3,exc:0,mhs:15.83,ahs:11.18,hw:77.78,seed:"R2 Top 8",esl:"★★★★",eslN:75,hg:"w_r2h7",heat:"R2H7",st:"Regular"},
+    {name:"Luana Silva",nat:"BRA",fp:197.71,avg:65.90,ex:3,exc:1,mhs:16.00,ahs:13.02,hw:72.73,seed:"R2 Top 8",esl:"★★★",eslN:55,hg:"w_r2h3",heat:"R2H3",st:"Regular"},
+    {name:"Molly Picklum",nat:"AUS",fp:189.86,avg:63.29,ex:3,exc:1,mhs:16.50,ahs:13.30,hw:62.50,seed:"R2 Top 8",esl:"★★★☆",eslN:65,hg:"w_r2h5",heat:"R2H5",st:"Regular"},
+    {name:"Sawyer Lindblad",nat:"USA",fp:186.36,avg:62.12,ex:3,exc:0,mhs:14.83,ahs:11.88,hw:66.67,seed:"R2 Top 8",esl:"★★★",eslN:58,hg:"w_r2h2",heat:"R2H2",st:"Goofy"},
   ],
   B:[
-    {name:"Alyssa Spencer",nat:"USA",fp:137.61,avg:45.87,ex:3,mhs:15.17,ahs:13.50,hw:50.00,seed:"R1 Qualify",esl:"★★",eslN:32,hg:"w_r1h7",heat:"R1H7",st:"Goofy"},
-    {name:"Caroline Marks",nat:"USA",fp:135.58,avg:45.19,ex:3,mhs:13.93,ahs:11.39,hw:25.00,seed:"R1 Qualify",esl:"★★★★★",eslN:95,hg:"w_r1h8",heat:"R1H8",st:"Goofy"},
-    {name:"Erin Brooks",nat:"CAN",fp:87.23,avg:29.08,ex:3,mhs:15.23,ahs:12.18,hw:25.00,seed:"R1 Qualify",esl:"★★",eslN:28,hg:"w_r1h2",heat:"R1H2",st:"Goofy"},
-    {name:"Isabella Nichols",nat:"AUS",fp:137.68,avg:45.89,ex:3,mhs:16.27,ahs:13.37,hw:40.00,seed:"R1 Qualify",esl:"★★★☆",eslN:68,hg:"w_r1h6",heat:"R1H6",st:"Regular"},
-    {name:"Nadia Erostarbe",nat:"ESP",fp:102.18,avg:34.06,ex:3,mhs:15.67,ahs:13.06,hw:57.14,seed:"R1 Qualify",esl:"★★",eslN:30,hg:"w_r1h3",heat:"R1H3",st:"Goofy"},
-    {name:"Stephanie Gilmore",nat:"AUS",fp:112.47,avg:37.49,ex:3,mhs:17.33,ahs:12.90,hw:71.43,seed:"R1 Qualify",esl:"★★★★★",eslN:85,hg:"w_r1h5",heat:"R1H5",st:"Regular"},
-    {name:"Tyler Wright",nat:"AUS",fp:84.33,avg:28.11,ex:3,mhs:13.76,ahs:9.15,hw:25.00,seed:"R1 Qualify",esl:"★★★",eslN:48,hg:"w_r1h4",heat:"R1H4",st:"Regular"},
-    {name:"Vahine Fierro",nat:"PYF",fp:81.17,avg:27.06,ex:3,mhs:16.50,ahs:11.83,hw:40.00,seed:"R1 Qualify",esl:"★★☆",eslN:38,hg:"w_r1h1",heat:"R1H1",st:"Goofy"},
+    {name:"Alyssa Spencer",nat:"USA",fp:137.61,avg:45.87,ex:3,exc:0,mhs:15.17,ahs:13.50,hw:50.00,seed:"R1 Qualify",esl:"★★",eslN:32,hg:"w_r1h7",heat:"R1H7",st:"Goofy"},
+    {name:"Caroline Marks",nat:"USA",fp:135.58,avg:45.19,ex:3,exc:0,mhs:13.93,ahs:11.39,hw:25.00,seed:"R1 Qualify",esl:"★★★★★",eslN:95,hg:"w_r1h8",heat:"R1H8",st:"Goofy"},
+    {name:"Erin Brooks",nat:"CAN",fp:87.23,avg:29.08,ex:3,exc:0,mhs:15.23,ahs:12.18,hw:25.00,seed:"R1 Qualify",esl:"★★",eslN:28,hg:"w_r1h2",heat:"R1H2",st:"Goofy"},
+    {name:"Isabella Nichols",nat:"AUS",fp:137.68,avg:45.89,ex:3,exc:1,mhs:16.27,ahs:13.37,hw:40.00,seed:"R1 Qualify",esl:"★★★☆",eslN:68,hg:"w_r1h6",heat:"R1H6",st:"Regular"},
+    {name:"Nadia Erostarbe",nat:"ESP",fp:102.18,avg:34.06,ex:3,exc:0,mhs:15.67,ahs:13.06,hw:57.14,seed:"R1 Qualify",esl:"★★",eslN:30,hg:"w_r1h3",heat:"R1H3",st:"Goofy"},
+    {name:"Stephanie Gilmore",nat:"AUS",fp:112.47,avg:37.49,ex:3,exc:1,mhs:17.33,ahs:12.90,hw:71.43,seed:"R1 Qualify",esl:"★★★★★",eslN:85,hg:"w_r1h5",heat:"R1H5",st:"Regular"},
+    {name:"Tyler Wright",nat:"AUS",fp:84.33,avg:28.11,ex:3,exc:0,mhs:13.76,ahs:9.15,hw:25.00,seed:"R1 Qualify",esl:"★★★",eslN:48,hg:"w_r1h4",heat:"R1H4",st:"Regular"},
+    {name:"Vahine Fierro",nat:"PYF",fp:81.17,avg:27.06,ex:3,exc:1,mhs:16.50,ahs:11.83,hw:40.00,seed:"R1 Qualify",esl:"★★☆",eslN:38,hg:"w_r1h1",heat:"R1H1",st:"Goofy"},
   ],
   C:[
-    {name:"Anat Lelior",nat:"ISR",fp:44.65,avg:14.88,ex:3,mhs:13.83,ahs:9.70,hw:25.00,seed:"R1 Qualify",esl:"★",eslN:10,hg:"w_r1h5",heat:"R1H5",st:"Goofy"},
-    {name:"Bella Kenworthy",nat:"USA",fp:44.20,avg:14.73,ex:3,mhs:11.60,ahs:10.59,hw:0.00,seed:"R1 Qualify",esl:"★★",eslN:22,hg:"w_r1h6",heat:"R1H6",st:"Regular"},
-    {name:"Brisa Hennessy",nat:"CRC",fp:42.27,avg:14.09,ex:3,mhs:12.10,ahs:10.18,hw:0.00,seed:"R1 Qualify",esl:"★★★",eslN:45,hg:"w_r1h7",heat:"R1H7",st:"Regular"},
-    {name:"Francisca Veselko",nat:"NZL",fp:59.97,avg:19.99,ex:3,mhs:12.67,ahs:9.94,hw:40.00,seed:"R1 Qualify",esl:"★",eslN:12,hg:"w_r1h3",heat:"R1H3",st:"Regular"},
-    {name:"Kirra Pinkerton",nat:"USA",fp:null,avg:null,ex:null,mhs:null,ahs:null,hw:null,seed:"R1 Qualify",esl:"★★",eslN:65,hg:"w_r1h8",heat:"R1H8",st:"Regular"},
-    {name:"Sally Fitzgibbons",nat:"AUS",fp:76.68,avg:25.56,ex:3,mhs:13.60,ahs:11.01,hw:50.00,seed:"R1 Qualify",esl:"★★★",eslN:48,hg:"w_r1h1",heat:"R1H1",st:"Regular"},
-    {name:"Tya Zebrowski",nat:"FRA",fp:60.46,avg:20.15,ex:3,mhs:12.16,ahs:11.73,hw:0.00,seed:"R1 Qualify",esl:"★★",eslN:20,hg:"w_r1h4",heat:"R1H4",st:"Regular"},
-    {name:"Yolanda Hopkins",nat:"POR",fp:64.78,avg:21.59,ex:3,mhs:12.67,ahs:10.70,hw:40.00,seed:"R1 Qualify",esl:"★★",eslN:25,hg:"w_r1h2",heat:"R1H2",st:"Regular"},
+    {name:"Anat Lelior",nat:"ISR",fp:44.65,avg:14.88,ex:3,exc:0,mhs:13.83,ahs:9.70,hw:25.00,seed:"R1 Qualify",esl:"★",eslN:10,hg:"w_r1h5",heat:"R1H5",st:"Goofy"},
+    {name:"Bella Kenworthy",nat:"USA",fp:44.20,avg:14.73,ex:3,exc:0,mhs:11.60,ahs:10.59,hw:0.00,seed:"R1 Qualify",esl:"★★",eslN:22,hg:"w_r1h6",heat:"R1H6",st:"Regular"},
+    {name:"Brisa Hennessy",nat:"CRC",fp:42.27,avg:14.09,ex:3,exc:0,mhs:12.10,ahs:10.18,hw:0.00,seed:"R1 Qualify",esl:"★★★",eslN:45,hg:"w_r1h7",heat:"R1H7",st:"Regular"},
+    {name:"Francisca Veselko",nat:"NZL",fp:59.97,avg:19.99,ex:3,exc:0,mhs:12.67,ahs:9.94,hw:40.00,seed:"R1 Qualify",esl:"★",eslN:12,hg:"w_r1h3",heat:"R1H3",st:"Regular"},
+    {name:"Kirra Pinkerton",nat:"USA",fp:null,avg:null,ex:null,exc:null,mhs:null,ahs:null,hw:null,seed:"R1 Qualify",esl:"★★",eslN:65,hg:"w_r1h8",heat:"R1H8",st:"Regular"},
+    {name:"Sally Fitzgibbons",nat:"AUS",fp:76.68,avg:25.56,ex:3,exc:0,mhs:13.60,ahs:11.01,hw:50.00,seed:"R1 Qualify",esl:"★★★",eslN:48,hg:"w_r1h1",heat:"R1H1",st:"Regular"},
+    {name:"Tya Zebrowski",nat:"FRA",fp:60.46,avg:20.15,ex:3,exc:0,mhs:12.16,ahs:11.73,hw:0.00,seed:"R1 Qualify",esl:"★★",eslN:20,hg:"w_r1h4",heat:"R1H4",st:"Regular"},
+    {name:"Yolanda Hopkins",nat:"POR",fp:64.78,avg:21.59,ex:3,exc:0,mhs:12.67,ahs:10.70,hw:40.00,seed:"R1 Qualify",esl:"★★",eslN:25,hg:"w_r1h2",heat:"R1H2",st:"Regular"},
   ]
 };
 const R1H=[
@@ -2136,110 +2240,217 @@ function setPSRank(r){
     if(b){b.classList.toggle('active',n===r);b.classList.toggle('ps-rank-btn',true);}
   });
   renderPSAnalysis();
+  renderPS();
 }
 
 function renderPSAnalysis(){
   try{
     var elm=document.getElementById('ps-analysis-m');
     var elw=document.getElementById('ps-analysis-w');
-    if(!elm&&!elw) return;
+    var verdictEl=document.getElementById('ps-verdict');
+    if(!elm&&!elw&&!verdictEl) return;
 
-    var rlbls={1:'Top Pick',2:'Second Pick',3:'Third Pick'};
-    var rlbl=rlbls[psRank]||'Top Pick';
-
-    function scorePS(s,gender){
+    // ── Score all surfers ────────────────────────────────────────────
+    function psScore(s,gender){
       var fp=gender==='men'?(s.fp||0)/248.58*100:(s.fp||0)/198.43*100;
       var hw=s.hw||0;
-      var esl=s.eslN||25;
-      var stB=s.st==='Regular'?15:0;
-      var r1pen=(s.heat||s.seed||'').match(/R1|Qualify/)?-10:0;
-      return (fp*.32)+(hw*.22)+(esl*.22)+(stB*.14)+(r1pen*.10);
+      var esl=(gender==='men'?ESL_M[s.name]:ESL_W[s.name])||s.eslN||20;
+      var isReg=s.st==='Regular';
+      var isR1=!!(s.heat||s.seed||'').match(/R1|Qualify/);
+      // ESL history
+      var wins=0,finals=0;
+      ESL_HIST.forEach(function(y){
+        var arr=gender==='men'?y.men:y.women;
+        if(!Array.isArray(arr))return;
+        arr.forEach(function(p){
+          if(typeof p==='object'&&p.n===s.name){if(p.p===1)wins++;if(p.p<=2)finals++;}
+        });
+      });
+      var eslBonus=isR1?(wins*20+Math.max(0,finals-wins)*8)*.4:(wins*20+Math.max(0,finals-wins)*8);
+      return (fp*.22)+(hw*.18)+(esl*.20)+((isReg?24:-8)*.14)+(isR1?-22:0)*.06+eslBonus;
     }
 
-    function buildList(pool,gender){
-      var scored=pool.filter(function(s){return s.fp||s.eslN;}).map(function(s){
-        return {
-          name:s.name,
-          sc:Math.round(scorePS(s,gender)),
-          heat:s.heat||s.seed||'—',
-          st:s.st||'—',
-          esl:s.esl||'—',
-          hw:s.hw!=null?s.hw.toFixed(1)+'%':'—',
-          r:s.st==='Regular'?'Regular-footer · frontside advantage at Punta Roca':'Goofy-footer · backhand at right-hander',
-          proj:'~'+(Math.round((s.fp||30)*2))+'pts 2×'
-        };
-      }).sort(function(a,b){return b.sc-a.sc;});
+    function buildPool(tierArr,gender){
+      return tierArr.map(function(s){
+        var sc=Math.round(psScore(s,gender));
+        var esl=(gender==='men'?ESL_M[s.name]:ESL_W[s.name])||s.eslN||0;
+        var isR1=!!(s.heat||s.seed||'').match(/R1|Qualify/);
+        var isReg=s.st==='Regular';
+        var wins=0,finals=0;
+        ESL_HIST.forEach(function(y){
+          var arr=gender==='men'?y.men:y.women;
+          if(!Array.isArray(arr))return;
+          arr.forEach(function(p){if(typeof p==='object'&&p.n===s.name){if(p.p===1)wins++;if(p.p<=2)finals++;}});
+        });
+        var risk=isR1?'R1 start':(isReg?(wins>0?'low':'low–med'):'med');
+        return{name:s.name,sc:sc,esl:esl,wins:wins,finals:finals,
+          heat:s.heat||s.seed||'—',st:s.st||'—',hw:s.hw||0,
+          isR1:isR1,isReg:isReg,risk:risk};
+      }).filter(function(x){return x.sc>0||x.esl>0;})
+        .sort(function(a,b){return b.sc-a.sc;});
+    }
 
-      // Pick by rank
-      var byRank=psRank===1?scored:psRank===2?scored.slice(1):scored.slice(2);
-      var top=byRank.slice(0,4);
+    var mPool=buildPool([...MEN.A,...MEN.B,...MEN.C],'men');
+    var wPool=buildPool([...WOMEN.A,...WOMEN.B,...WOMEN.C],'women');
+    var mTop=mPool[0]||{name:'—',sc:0,st:'—',heat:'—',wins:0,esl:0,risk:'—',isReg:true};
+    var wTop=wPool[0]||{name:'—',sc:0,st:'—',heat:'—',wins:0,esl:0,risk:'—',isReg:true};
 
-      return top.map(function(p,i){
-        var isTop=i===0;
-        var bar=Math.min(95,p.sc*.9);
-        var stCol=p.st==='Regular'?'var(--ink2)':'var(--warn)';
-        return '<div class="psa-row'+(isTop?' top':'')+'">'+
-          '<div class="psa-num-badge">'+(psRank===1?i+1:psRank===2?i+2:i+3)+'</div>'+
-          '<div class="psa-body">'+
-            '<div class="psa-name">'+p.name+'</div>'+
-            '<div class="psa-score-row">'+
-              '<span class="psa-score-val">'+p.sc+'</span>'+
-              '<div class="psa-bar-wrap"><div class="psa-bar-fill" style="width:'+bar+'%"></div></div>'+
-              '<span class="psa-proj">'+p.proj+'</span>'+
-            '</div>'+
-            '<div class="psa-reason">'+
-              '<span style="color:'+stCol+'">'+p.st+'</span> · '+p.heat+' · ESL: '+p.esl+' · HW: '+p.hw+
-            '</div>'+
+    // ── Recommendation summary ──────────────────────────────────────
+    if(verdictEl){
+      function recBlock(p,g){
+        var curPS=g==='men'?psMan:psWoman;
+        var inTeam=g==='men'?selM.has(p.name):selW.has(p.name);
+        var isCur=curPS===p.name;
+        var histLine=p.wins>=2?p.wins+'× El Salvador winner':p.wins===1?'Former El Salvador winner':p.finals>0?'ESL finalist':'—';
+        var metaLine=p.st+(p.heat&&p.heat!=='—'?' · '+p.heat:'')+(histLine!=='—'?' · '+histLine:'');
+        var reason=p.wins>=2?
+          'The proven Power Surfer at this break. Multiple wins at Punta Roca make them the standout pick.' :
+          p.wins===1?'Former winner here. Knows what it takes to score at Punta Roca in competition.' :
+          p.isReg?'Regular-footer with frontside advantage at this right-hand point break. Strong value pick.' :
+          'Top-ranked option based on 2026 CT form, heat win rate, and El Salvador specialist rating.';
+        return '<div class="ps-rec-block">'+
+          '<div class="ps-rec-eyebrow">'+(g==='men'?'Men\'s':'Women\'s')+' Power Surfer</div>'+
+          '<div class="ps-rec-name">'+p.name+'</div>'+
+          '<div class="ps-rec-meta">'+metaLine+'</div>'+
+          '<div class="ps-rec-reason">'+reason+'</div>'+
+          (inTeam?
+            '<div class="ps-rec-cta'+(isCur?' current':'')+'" data-action="pick-ps" data-gender="'+g+'" data-name="'+p.name.replace(/"/g,'&quot;')+'">'+
+              (isCur?'⚡ Power Surfer selected':'Set as Power Surfer')+
+            '</div>':
+            '<div class="ps-rec-reason" style="margin-top:5px;opacity:.6">Not in your team</div>'
+          )+
+        '</div>';
+      }
+      verdictEl.innerHTML='<div class="ps-rec-summary">'+recBlock(mTop,'men')+recBlock(wTop,'women')+'</div>';
+    }
+
+    // ── Ranked list ─────────────────────────────────────────────────
+    var rlbls={1:'Top pick',2:'Alternatives',3:'Further options'};
+    var skip=psRank===1?0:psRank===2?1:2;
+    var maxSc=(mPool[0]||{sc:100}).sc||100;
+
+    function buildList(pool,gender,el){
+      if(!el) return;
+      var curPS=gender==='men'?psMan:psWoman;
+      var top=pool.slice(skip,skip+4);
+      if(!top.length){el.innerHTML='';return;}
+      el.innerHTML='<div class="psa-section-lbl">'+(gender==='men'?'Men':'Women')+' — '+(rlbls[psRank]||'Top pick')+'</div>'+
+      top.map(function(p,i){
+        var rank=i+skip+1;
+        var bar=Math.min(96,Math.round((p.sc/maxSc)*96));
+        var stCol=p.isReg?'var(--ink2)':'var(--warn)';
+        var inTeam=gender==='men'?selM.has(p.name):selW.has(p.name);
+        var isCurPS=curPS===p.name;
+        var histTag=p.wins>=2?(p.wins+'× winner'):p.wins===1?'winner':p.finals>0?'finalist':'';
+        return '<div class="psa-row">'+
+          '<div class="psa-name-row">'+
+            '<span class="psa-rank">'+rank+'.</span>'+
+            '<span class="psa-name'+(isCurPS?' sel-name':'')+'">'+(isCurPS?'⚡ ':'')+p.name+'</span>'+
+            (histTag?'<span class="psa-rec-badge">'+histTag+'</span>':'')+
+            '<span class="psa-score">'+p.sc+'</span>'+
           '</div>'+
+          '<div class="psa-bar-wrap"><div class="psa-bar-fill'+(p.wins>0?' gold':'')+'" style="width:'+bar+'%"></div></div>'+
+          '<div class="psa-meta">'+
+            '<span style="color:'+stCol+'">'+p.st+'</span>'+
+            (p.heat&&p.heat!=='—'?' · '+p.heat:'')+
+            ' · HW '+p.hw.toFixed(0)+'%'+
+            ' · Risk: '+p.risk+
+          '</div>'+
+          (inTeam?
+            '<div class="psa-set-btn'+(isCurPS?' active':'')+'" data-action="pick-ps" data-gender="'+gender+'" data-name="'+p.name.replace(/"/g,'&quot;')+'">'+
+              (isCurPS?'⚡ Power Surfer':'Set as Power Surfer')+
+            '</div>':
+            '<div class="psa-not-in-team">Not in your team</div>'
+          )+
         '</div>';
       }).join('');
     }
 
-    var mPool=[...MEN.A,...MEN.B,...MEN.C];
-    var wPool=[...WOMEN.A,...WOMEN.B,...WOMEN.C];
+    buildList(mPool,'men',elm);
+    buildList(wPool,'women',elw);
 
-    var mHTML='<div class="psa-col-lbl">Men — '+rlbl+'</div>'+buildList(mPool,'men');
-    var wHTML='<div class="psa-col-lbl">Women — '+rlbl+'</div>'+buildList(wPool,'women');
-
-    if(elm) elm.innerHTML=mHTML;
-    if(elw) elw.innerHTML=wHTML;
-  }catch(e){console.warn('renderPSAnalysis error:',e);}
+  }catch(e){console.warn('renderPSAnalysis:',e);}
 }
 
-// ═══════════════ POWER SURFER OPTS ═══════════════
+// ═══════════════ POWER SURFER RENDER ═══════════════
 function renderPS(){
   try{
+    // Status bar
+    var mCurEl=document.getElementById('ps-cur-man');
+    var wCurEl=document.getElementById('ps-cur-woman');
+    if(mCurEl){mCurEl.textContent=psMan||'—';mCurEl.className='ps-status-val'+(psMan?' set':'');}
+    if(wCurEl){wCurEl.textContent=psWoman||'—';wCurEl.className='ps-status-val'+(psWoman?' set':'');}
+
+    // Pick grid cards
     var mg=document.getElementById('ps-men-grid');
     var wg=document.getElementById('ps-women-grid');
-    var psBar=document.getElementById('ps-bar');
-    if(psBar){
-      var mName=psMan?psMan:'Select Power Surfer';
-      var wName=psWoman?psWoman:'Select Power Surfer';
-      psBar.innerHTML='<span style="font-size:9px;font-family:var(--font-mono);color:var(--ink3)">PS: </span>'+
-        '<span style="font-size:9px;font-weight:600;color:'+(psMan?'rgba(212,175,55,.9)':'var(--ink3)')+'">'+mName+'</span>'+
-        '<span style="font-size:9px;font-family:var(--font-mono);color:var(--ink3);margin:0 6px">/</span>'+
-        '<span style="font-size:9px;font-weight:600;color:'+(psWoman?'rgba(212,175,55,.9)':'var(--ink3)')+'">'+wName+'</span>';
-    }
+
     function mkCard(name,g){
-      var isSel=(g==='men'&&psMan===name)||(g==='women'&&psWoman===name);
-      var sd=g==='men'?allM().find(function(s){return s.name===name;}):allW().find(function(s){return s.name===name;});
-      var heat=sd&&sd.heat?sd.heat:'—';
-      var st=sd&&sd.st?sd.st:'—';
+      var isSel=(g==='men'?psMan:psWoman)===name;
+      var sd=g==='men'?allM().find(function(x){return x.name===name;}):allW().find(function(x){return x.name===name;});
+      var heat=sd?((sd.heat||sd.seed||'').replace('R2 Top 8','R2').replace('R1 Qualify','R1')):'—';
+      var st=sd?sd.st:'—';
       var stCol=st==='Regular'?'var(--ink2)':'var(--warn)';
-      return '<div class="ps-card'+(isSel?' sel':'')+'" data-gender="'+g+'" data-name="'+name.replace(/"/g,'&quot;')+'" data-action="pick-ps" style="cursor:pointer">'+
+      return '<div class="ps-card'+(isSel?' sel':'')+'" data-gender="'+g+'" data-name="'+name.replace(/"/g,'&quot;')+'" data-action="pick-ps">'+
         '<div class="ps-card-left">'+
-          '<div class="ps-cn">'+name+'</div>'+
+          '<div class="ps-cn'+(isSel?' sel-name':'')+'">'+(isSel?'⚡ ':'')+name+'</div>'+
           '<div class="ps-cp"><span style="color:'+stCol+'">'+st+'</span> · '+heat+'</div>'+
         '</div>'+
         '<div class="ps-cb">'+(isSel?'⚡':'○')+'</div>'+
       '</div>';
     }
+
     var mPicks=[...selM];
     var wPicks=[...selW];
-    if(mg) mg.innerHTML=mPicks.length?mPicks.map(function(n){return mkCard(n,'men');}).join(''):'<div class="ps-empty">Pick 6 men to select a Power Surfer</div>';
-    if(wg) wg.innerHTML=wPicks.length?wPicks.map(function(n){return mkCard(n,'women');}).join(''):'<div class="ps-empty">Pick 6 women to select a Power Surfer</div>';
-  }catch(e){console.warn('renderPS error:',e);}
+    if(mg) mg.innerHTML=mPicks.length?
+      mPicks.map(function(n){return mkCard(n,'men');}).join(''):
+      '<div class="ps-empty">Pick your 6 men first</div>';
+    if(wg) wg.innerHTML=wPicks.length?
+      wPicks.map(function(n){return mkCard(n,'women');}).join(''):
+      '<div class="ps-empty">Pick your 6 women first</div>';
+
+    // Sync inline ⚡ buttons in tier table
+    renderTierInlinePS();
+  }catch(e){console.warn('renderPS:',e);}
 }
+
+// Update inline PS buttons in pick rows without full re-render
+function renderTierInlinePS(){
+  try{
+    ['men','women'].forEach(function(g){
+      var curPS=g==='men'?psMan:psWoman;
+      var panel=document.getElementById(g==='men'?'panel-men':'panel-women');
+      if(!panel) return;
+      var btns=panel.querySelectorAll('[data-ps-inline]');
+      btns.forEach(function(btn){
+        var pg=btn.getAttribute('data-ps-g');
+        var pn=(btn.getAttribute('data-ps-n')||'').replace(/&quot;/g,'"');
+        if(pg!==g) return;
+        var isActive=pn===curPS;
+        btn.className='ps-inline-btn'+(isActive?' active':'');
+        btn.textContent=isActive?'⚡ PS':'⚡';
+      });
+    });
+  }catch(e){}
+}
+
+
+function _psTopRec(gender){
+  try{
+    var pool=gender==='men'?[...MEN.A,...MEN.B,...MEN.C]:[...WOMEN.A,...WOMEN.B,...WOMEN.C];
+    var picks=gender==='men'?selM:selW;
+    if(!picks.size) return null;
+    var inTeam=pool.filter(function(s){return picks.has(s.name);});
+    var scored=inTeam.map(function(s){return{name:s.name,sc:scoreElSal(s,gender),isR1:!!(s.heat||s.seed||'').match(/R1|Qualify/),isReg:s.st==='Regular'};});
+    // Prefer non-R1 Regular-footers
+    var nonR1Reg=scored.filter(function(x){return !x.isR1&&x.isReg;}).sort(function(a,b){return b.sc-a.sc;});
+    if(nonR1Reg.length) return nonR1Reg[0].name;
+    var nonR1=scored.filter(function(x){return !x.isR1;}).sort(function(a,b){return b.sc-a.sc;});
+    if(nonR1.length) return nonR1[0].name;
+    return scored.sort(function(a,b){return b.sc-a.sc;})[0]?.name||null;
+  }catch(e){return null;}
+}
+
 
 
 // ═══════════════ TIER TABLE ═══════════════
@@ -2267,7 +2478,9 @@ function renderTier(g,tk){
       const _heat=s.heat||(s.seed&&s.seed.includes('Top 8')?'R2':'R1')||'—';
       const _r1=_heat.startsWith('R1');
       const heatEl=(()=>{return`<td><span class="htag${_r1?' r1':''}">${_heat}</span></td><td style="font-size:9px;color:${s.st==='Regular'?'var(--ink2)':'var(--warn)'};">${s.st==='Regular'?'Regular':'Goofy'}</td>`;})();
-      const pwB=isPow?`<span style="font-size:7px;background:rgba(255,255,255,.1);color:var(--ink2);padding:1px 4px;border-radius:6px;margin-left:3px;font-family:var(--font-mono)">⚡PS</span>`:'';
+      const safeN=s.name.replace(/"/g,'&quot;');
+      // Inline PS button — only shown when surfer is selected
+      const pwB=isSel?`<span class="ps-inline-btn${isPow?' active':''}" data-ps-inline="1" data-ps-g="${g}" data-ps-n="${safeN}" data-action="pick-ps" data-gender="${g}" data-name="${safeN}">${isPow?'⚡ PS':'⚡'}</span>`:'';
       const koT=isKO?`<span style="font-size:8px;color:var(--warn)"> KO</span>`:'';
       const mxN=isMaxed?`<span style="font-size:8px;color:var(--ink3)"> · full</span>`:'';
       const flag=getFlag(s.nat), rank=getRank(s.name);
@@ -2284,13 +2497,13 @@ function renderTier(g,tk){
       </tr>`:'';
       rows+=`<tr class="${cls}" data-gender="${g}" data-name="${s.name.replace(/"/g,'&quot;')}" data-action="pick">
         <td><span style="display:inline-flex;align-items:flex-start;gap:6px"><span class="chk">${isSel?'✓':''}</span><span><span class="sname">${s.name}${koT}${pwB}</span><span class="snat">${flag}${rank?' · <span style=\"color:var(--ink2);font-weight:600\">' +rank+'</span>':''}${mxN}</span></span></span></td>
-        <td class="fpt">${fmt(s.fp)}</td><td>${fmt(s.avg)}</td><td>${fmt(s.ex,0)}</td><td>${fmt(s.mhs)}</td><td>${fmt(s.ahs)}</td>
+        <td class="fpt">${fmt(s.fp)}</td><td>${fmt(s.avg)}</td><td>${fmt(s.ex,0)}</td><td style="color:var(--ink3)">${s.exc!=null?s.exc.toFixed(2):"—"}</td><td>${fmt(s.mhs)}</td><td>${fmt(s.ahs)}</td>
         <td class="${hwCls(s.hw)}">${s.hw!=null?s.hw.toFixed(1)+'%':'—'}</td>
         ${heatEl}<td style="color:var(--ink3);font-size:9px">${s.esl}</td>
       </tr>${clashWarnRow}`;
     }
   }
-  const hdrs=`<th>Surfer</th><th>Fantasy Points</th><th>Avg Score</th><th>Events</th><th>Best Heat</th><th>Avg Heat Score</th><th>Heat Wins</th><th>Heat</th><th>Foot</th><th>El Salvador Rating</th>`;
+  const hdrs=`<th>Surfer</th><th>Fant Pts</th><th>Avg Pts</th><th>Events</th><th>Exc H</th><th>Max HS</th><th>AHS</th><th>Heat W%</th><th>Heat</th><th>Foot</th><th>ESL</th>`;
   const pcnt=`<span class="tpcount${full?' full':''}">${picked}/${cap}${full?' ✓':''}</span>`;
   return`<div class="tier-sec">
     <div class="tier-hdr t${tk.toLowerCase()}" data-gender="${g}" data-tier="${tk}" data-action="toggle-tier">
@@ -2371,7 +2584,7 @@ function pickSurfer(e,g,name){
       }
       sel.add(name);
     }
-    renderPicks(g);renderPS();updateBar();autoSave();
+    renderPicks(g);renderPS();renderPSAnalysis();updateBar();autoSave();
     if(selM.size===MTOTAL&&selW.size===WTOTAL&&(!psMan||!psWoman)&&!awaitingPS){
       awaitingPS=true;
       setTimeout(function(){showPSModal();},300);
@@ -2460,7 +2673,7 @@ document.addEventListener('click',function(e){
         (rg==='men'?selM:selW).delete(rn);
         if(rg==='men'&&psMan===rn)psMan=null;
         if(rg==='women'&&psWoman===rn)psWoman=null;
-        try{renderPicks('men');renderPicks('women');renderPS();updateBar();}catch(ex){}
+        try{renderPicks('men');renderPicks('women');renderPS();renderPSAnalysis();updateBar();}catch(ex){}
       }
       return;
     }
@@ -2470,7 +2683,20 @@ document.addEventListener('click',function(e){
     if(cp){
       var cpg=_attr(cp,'data-psg')||(cp.dataset&&cp.dataset.psg)||'';
       if(cpg==='men')psMan=null; else psWoman=null;
-      try{renderPS();updateBar();}catch(ex){}
+      try{renderPS();renderPSAnalysis();updateBar();autoSave();}catch(ex){}
+      return;
+    }
+
+    // Inline PS card pick (picks section)
+    var pck=el.closest('[data-action="pick-ps"]');
+    if(pck){
+      var pkg=_attr(pck,'data-gender')||(pck.dataset&&pck.dataset.gender)||'';
+      var pkn=(_attr(pck,'data-name')||(pck.dataset&&pck.dataset.name)||'').replace(/&quot;/g,'"');
+      if(pkg&&pkn){
+        if(pkg==='men') psMan=(psMan===pkn?null:pkn);
+        else psWoman=(psWoman===pkn?null:pkn);
+        try{renderPS();renderPSAnalysis();updateBar();autoSave();}catch(ex){}
+      }
       return;
     }
 
@@ -2570,7 +2796,7 @@ function showAPModal(){
   overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.remove();});
 }
 (document.getElementById('randompick-btn')||{addEventListener:function(){}}).addEventListener('click',randomPickTeam);
-(document.getElementById('reset-btn')||{addEventListener:function(){}}).addEventListener('click',()=>{selM.clear();selW.clear();psMan=null;psWoman=null;awaitingPS=false;renderPicks('men');renderPicks('women');renderPS();updateBar();});
+(document.getElementById('reset-btn')||{addEventListener:function(){}}).addEventListener('click',()=>{selM.clear();selW.clear();psMan=null;psWoman=null;awaitingPS=false;renderPicks('men');renderPicks('women');renderPS();renderPSAnalysis();updateBar();});
 (document.getElementById('reset-pred-btn')||{addEventListener:function(){}}).addEventListener('click',()=>{Object.keys(predState).forEach(k=>delete predState[k]);renderPredictor();updateBar();});
 
 function randomPickTeam(){
@@ -2859,7 +3085,7 @@ function autoPickTeam(){
   psWoman=(wPSReg[0]||wPS[0])?.name||null;
 
   tOpen.men={A:true,B:true,C:true};tOpen.women={A:true,B:true,C:true};
-  renderPicks('men');renderPicks('women');renderPS();updateBar();
+  renderPicks('men');renderPicks('women');renderPS();renderPSAnalysis();updateBar();
   showAutoModal(mp,wp);
 }
 
