@@ -3221,106 +3221,202 @@ function showAPModal(){
 });
 (document.getElementById('reset-pred-btn')||{addEventListener:function(){}}).addEventListener('click',()=>{Object.keys(predState).forEach(k=>delete predState[k]);renderPredictor();updateBar();});
 
+function cleanSurferName(n){
+  return (n||'').replace(/ \(.*?\)/g,'').replace(/[⭐🔴]/g,'').trim();
+}
+function findBracketHeatId(name, gender){
+  var rounds = gender==='women' ? WDIVISION_ROUNDS : ROUNDS;
+  var clean = cleanSurferName(name);
+  for(var i=0;i<rounds.length;i++){
+    var heats = BRACKET[rounds[i]] || [];
+    for(var j=0;j<heats.length;j++){
+      var h = heats[j];
+      if((h.surfers||[]).some(function(s){return cleanSurferName(s)===clean;})) return h.id;
+    }
+  }
+  return '';
+}
+function heatById(id){
+  var keys = ROUNDS.concat(WDIVISION_ROUNDS);
+  for(var i=0;i<keys.length;i++){
+    var h = (BRACKET[keys[i]]||[]).find(function(x){return x.id===id;});
+    if(h) return h;
+  }
+  return null;
+}
+function bracketPathFor(s, gender){
+  var start = findBracketHeatId(s.name, gender);
+  if(!start && s.officialFeedsTo) start = s.officialFeedsTo;
+  if(!start && s.heat && s.heat!=='TBD') start = (gender==='women' && !s.heat.startsWith('W')) ? 'W'+s.heat : s.heat;
+  var ids = [];
+  var cur = start;
+  var guard = 0;
+  while(cur && guard++ < 12){
+    ids.push(cur);
+    var h = heatById(cur);
+    cur = h ? h.feedsTo : null;
+  }
+  return ids;
+}
+function clashKeysFor(s, gender){
+  var path = bracketPathFor(s, gender);
+  var hard = [];
+  if(s.hg) hard.push('heat:'+s.hg);
+  path.forEach(function(id){
+    if(/FINAL|FIN$|WFIN/.test(id)) return;
+    if(/^QFH|^WQF|^SF|^WSF/.test(id)) return;
+    hard.push('path:'+id);
+  });
+  var soft = path
+    .filter(function(id){return /^QFH|^WQF|^SF|^WSF/.test(id);})
+    .map(function(id){return (/^QFH|^WQF/.test(id) ? 'qf:' : 'sf:')+id;});
+  return {hard:hard, soft:soft, path:path};
+}
+function pastWinBonus(name, gender){
+  var bonus = 0;
+  try{
+    ESL_HIST.forEach(function(y){
+      var arr = gender==='men' ? y.men : y.women;
+      (arr||[]).forEach(function(p){
+        var n = typeof p==='string' ? p : p.n;
+        var pos = typeof p==='string' ? null : p.p;
+        if(n===name) bonus += pos===1 ? 10 : pos===2 ? 5 : 3;
+      });
+    });
+  }catch(e){}
+  if(['Carissa Moore','Stephanie Gilmore','Gabriel Medina','Filipe Toledo','Italo Ferreira','Caroline Marks'].includes(name)) bonus += 6;
+  return bonus;
+}
+function elitePickScore(s, gender){
+  var base = activeEventId==='rio' ? scoreOfficial(s, gender) : scoreElSal(s, gender);
+  var rank = CT_RANK[s.name];
+  var rankBonus = rank ? Math.max(0, 18 - rank) * .9 : 0;
+  var availability = s.availability===1 || s.availability===undefined ? 0 : -80;
+  var dataPenalty = (s.fp===null || s.fp===undefined) ? -22 : 0;
+  var r1Penalty = ((s.heat||'').startsWith('R1') || (s.seed||'').includes('Qualify')) ? -6 : 0;
+  return base + rankBonus + pastWinBonus(s.name, gender) + availability + dataPenalty + r1Penalty;
+}
+function buildPickPool(gender){
+  var src = gender==='men' ? MEN : WOMEN;
+  return ['A','B','C'].flatMap(function(tier){
+    return (src[tier]||[]).map(function(s){
+      var copy = Object.assign({}, s, {tier:tier});
+      copy.sc = elitePickScore(copy, gender);
+      return copy;
+    });
+  }).filter(function(s){
+    if(s.availability===0) return false;
+    if(gender==='women' && s.name==='Kirra Pinkerton') return false;
+    return true;
+  }).sort(function(a,b){return (b.sc||0)-(a.sc||0);});
+}
+function combosOf(arr, n){
+  var out = [];
+  function rec(start, chosen){
+    if(chosen.length===n){out.push(chosen.slice());return;}
+    for(var i=start;i<arr.length;i++){
+      chosen.push(arr[i]);
+      rec(i+1, chosen);
+      chosen.pop();
+    }
+  }
+  rec(0, []);
+  return out;
+}
+function scoreTeamCombo(team, gender, jitter){
+  var seenHard = new Set(), seenSoft = {};
+  var hardHits = 0, softHits = 0, pathCoverage = new Set();
+  team.forEach(function(s){
+    var cacheKey = gender+':'+s.name;
+    var keys = window._pickClashCache && window._pickClashCache[cacheKey];
+    if(!keys){
+      if(!window._pickClashCache) window._pickClashCache = {};
+      keys = clashKeysFor(s, gender);
+      window._pickClashCache[cacheKey] = keys;
+    }
+    keys.hard.forEach(function(k){ if(seenHard.has(k)) hardHits++; else seenHard.add(k); });
+    keys.soft.forEach(function(k){ seenSoft[k]=(seenSoft[k]||0)+1; });
+    keys.path.forEach(function(k){ if(!/FINAL|FIN$|WFIN/.test(k)) pathCoverage.add(k); });
+  });
+  Object.keys(seenSoft).forEach(function(k){
+    if(seenSoft[k]>1) softHits += (seenSoft[k]-1) * (k.indexOf('qf:')===0 ? 1.6 : 1);
+  });
+  var total = team.reduce(function(a,s){return a+(s.sc||0);},0);
+  var spreadBonus = pathCoverage.size * 2.2;
+  var noise = jitter ? Math.random()*jitter : 0;
+  return total + spreadBonus + noise - hardHits*100000 - softHits*320;
+}
+function teamClashReport(team, gender){
+  var hard = {}, soft = {}, direct = [];
+  (team||[]).forEach(function(s){
+    var keys = clashKeysFor(s, gender);
+    keys.hard.forEach(function(k){ if(!hard[k]) hard[k]=[]; hard[k].push(s.name); });
+    keys.soft.forEach(function(k){ if(!soft[k]) soft[k]=[]; soft[k].push(s.name); });
+  });
+  Object.keys(hard).forEach(function(k){ if(hard[k].length>1) direct.push(k+': '+hard[k].join(' / ')); });
+  return {
+    hard: direct,
+    semifinal: Object.keys(soft).filter(function(k){return soft[k].length>1;}).map(function(k){return k+': '+soft[k].join(' / ');})
+  };
+}
+function optimiseTeam(gender, opts){
+  opts = opts || {};
+  var pool = buildPickPool(gender);
+  var caps = gender==='men' ? MCAPS : WCAPS;
+  var tierLimit = gender==='men' ? {A:8,B:14,C:7} : {A:8,B:8,C:8};
+  var tiers = {
+    A: combosOf(pool.filter(function(s){return s.tier==='A';}).slice(0,tierLimit.A), caps.A),
+    B: combosOf(pool.filter(function(s){return s.tier==='B';}).slice(0,tierLimit.B), caps.B),
+    C: combosOf(pool.filter(function(s){return s.tier==='C';}).slice(0,tierLimit.C), caps.C)
+  };
+  var best = null;
+  var signatures = opts.excludeSignatures || new Set();
+  tiers.A.forEach(function(a){
+    tiers.B.forEach(function(b){
+      tiers.C.forEach(function(c){
+        var team = a.concat(b,c);
+        var sig = team.map(function(s){return s.name;}).sort().join('|');
+        if(signatures.has(sig)) return;
+        var score = scoreTeamCombo(team, gender, opts.jitter||0);
+        if(!best || score>best.score) best = {team:team, score:score, signature:sig};
+      });
+    });
+  });
+  return best || {team:[], score:0, signature:''};
+}
+function choosePowerSurfer(team, gender){
+  return (team||[]).slice().sort(function(a,b){
+    var ar1 = ((a.heat||'').startsWith('R1') || (a.seed||'').includes('Qualify')) ? 1 : 0;
+    var br1 = ((b.heat||'').startsWith('R1') || (b.seed||'').includes('Qualify')) ? 1 : 0;
+    if(ar1!==br1) return ar1-br1;
+    return (b.sc||0)-(a.sc||0);
+  })[0]?.name || null;
+}
+
 function randomPickTeam(){
   selM.clear();selW.clear();psMan=null;psWoman=null;
-
-  // Helper: shuffle array
-  const shuffle=arr=>{const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
-
-  // Score-weighted random: still biased toward good picks but with randomness
-  // Uses a "weighted lottery" — higher score = more tickets in the draw
-  const weightedRandom=(pool)=>{
-    const scored=pool.map(s=>({...s,sc:scoreM(s)||scoreW(s)||1}));
-    const total=scored.reduce((a,s)=>a+Math.max(1,s.sc),0);
-    let r=Math.random()*total;
-    for(const s of scored){r-=Math.max(1,s.sc);if(r<=0)return s;}
-    return scored[scored.length-1];
-  };
-
-  // Men: pick 6 with correct tier caps, no heat clashes, weighted random
-  const menPool=[
-    ...MEN.A.map(s=>({...s,tier:'A',sc:scoreM(s)})),
-    ...MEN.B.map(s=>({...s,tier:'B',sc:scoreM(s)})),
-    ...MEN.C.map(s=>({...s,tier:'C',sc:scoreM(s)})),
-  ].filter(s=>s.fp!==null);
-
-  const usedHG=new Set(),tc={A:0,B:0,C:0},mp=[];
-  const maxAttempts=200;
-  let attempts=0;
-  while(mp.length<MTOTAL&&attempts<maxAttempts){
-    attempts++;
-    const available=menPool.filter(s=>
-      !selM.has(s.name)&&
-      tc[s.tier]<MCAPS[s.tier]&&
-      (!s.hg||!usedHG.has(s.hg))&&
-      !mp.find(p=>p.name===s.name)
-    );
-    if(!available.length)break;
-    const pick=weightedRandom(available);
-    mp.push(pick);tc[pick.tier]++;if(pick.hg)usedHG.add(pick.hg);
+  const usedMenSigs = new Set(), usedWomenSigs = new Set();
+  function genOptimisedVariant(){
+    var m = optimiseTeam('men', {jitter:18, excludeSignatures:usedMenSigs});
+    var w = optimiseTeam('women', {jitter:18, excludeSignatures:usedWomenSigs});
+    if(m.signature) usedMenSigs.add(m.signature);
+    if(w.signature) usedWomenSigs.add(w.signature);
+    return {men:m.team, women:w.team, psM:choosePowerSurfer(m.team,'men'), psW:choosePowerSurfer(w.team,'women')};
   }
+  const t1=genOptimisedVariant();
+  const mp=t1.men, wp=t1.women;
+  psMan=t1.psM; psWoman=t1.psW;
   mp.forEach(s=>selM.add(s.name));
-
-  // Women: same approach with official heat-clash blocking when the draw is published.
-  const wPool=[
-    ...WOMEN.A.map(s=>({...s,tier:'A',sc:scoreW(s)})),
-    ...WOMEN.B.map(s=>({...s,tier:'B',sc:scoreW(s)})),
-    ...WOMEN.C.map(s=>({...s,tier:'C',sc:scoreW(s)})),
-  ].filter(s=>s.fp!==null&&s.name!=='Kirra Pinkerton');
-
-  const wUsedHG=new Set(),wtc={A:0,B:0,C:0},wp=[];
-  attempts=0;
-  while(wp.length<WTOTAL&&attempts<maxAttempts){
-    attempts++;
-    const available=wPool.filter(s=>
-      !selW.has(s.name)&&
-      wtc[s.tier]<WCAPS[s.tier]&&
-      (!s.hg||!wUsedHG.has(s.hg))&&
-      !wp.find(p=>p.name===s.name)
-    );
-    if(!available.length)break;
-    const pick=weightedRandom(available);
-    wp.push(pick);wtc[pick.tier]++;if(pick.hg)wUsedHG.add(pick.hg);
-  }
   wp.forEach(s=>selW.add(s.name));
-
-  // PS: pick randomly from team, weighted by PS score
-  if(mp.length>0){const psScores=mp.map(s=>({name:s.name,sc:Math.max(1,s.sc)}));psMan=weightedRandom(psScores).name;}
-  if(wp.length>0){const wpsScores=wp.map(s=>({name:s.name,sc:Math.max(1,s.sc)}));psWoman=weightedRandom(wpsScores).name;}
-
-  // ── Save current team then fill all three with different random picks ──
-  // Generate three unique random teams
-  function genRandomTeam(seed){
-    const usedHG=new Set(),tc={A:0,B:0,C:0},picked=[];
-    const attempts=300;let att=0;
-    while(picked.length<MTOTAL&&att<attempts){
-      att++;
-      const available=menPool.filter(s=>!picked.find(p=>p.name===s.name)&&tc[s.tier]<MCAPS[s.tier]&&(!s.hg||!usedHG.has(s.hg)));
-      if(!available.length)break;
-      const p=weightedRandom(available);
-      picked.push(p);tc[p.tier]++;if(p.hg)usedHG.add(p.hg);
-    }
-    const wPicked=[];const wUsedHG=new Set(),wtc={A:0,B:0,C:0};let watt=0;
-    while(wPicked.length<WTOTAL&&watt<attempts){
-      watt++;
-      const avail=wPool.filter(s=>!wPicked.find(p=>p.name===s.name)&&wtc[s.tier]<WCAPS[s.tier]&&(!s.hg||!wUsedHG.has(s.hg)));
-      if(!avail.length)break;
-      const p=weightedRandom(avail);
-      wPicked.push(p);wtc[p.tier]++;if(p.hg)wUsedHG.add(p.hg);
-    }
-    const psM2=picked.length?weightedRandom(picked.map(s=>({...s,sc:Math.max(1,s.sc)}))).name:null;
-    const psW2=wPicked.length?weightedRandom(wPicked.map(s=>({...s,sc:Math.max(1,s.sc)}))).name:null;
-    return{men:picked,women:wPicked,psM:psM2,psW:psW2};
-  }
 
   // Save Team 1 = current pick (already done above)
   safeStorage.setItem(teamKey(1,'data'),JSON.stringify({selM:[...selM],selW:[...selW],psMan,psWoman}));
 
   // Generate Team 2 and Team 3 as different random picks
-  const t2=genRandomTeam(2);
+  const t2=genOptimisedVariant();
   safeStorage.setItem(teamKey(2,'data'),JSON.stringify({selM:t2.men.map(s=>s.name),selW:t2.women.map(s=>s.name),psMan:t2.psM,psWoman:t2.psW}));
 
-  const t3=genRandomTeam(3);
+  const t3=genOptimisedVariant();
   safeStorage.setItem(teamKey(3,'data'),JSON.stringify({selM:t3.men.map(s=>s.name),selW:t3.women.map(s=>s.name),psMan:t3.psM,psWoman:t3.psW}));
 
   tOpen.men={A:true,B:true,C:true};tOpen.women={A:true,B:true,C:true};
@@ -3459,54 +3555,14 @@ function scoreElSal(s, gender) {
 function autoPickTeam(){
   selM.clear();selW.clear();psMan=null;psWoman=null;awaitingPS=false;
 
-  // ── SCORING: scoreElSal already weights ESL history + Regular stance heavily ──
-  // ── MEN ────────────────────────────────────────────────────────────────────────
-  const usedHG=new Set(), tc={A:0,B:0,C:0}, mp=[];
-  const ms=[
-    ...MEN.A.map(s=>({...s,tier:'A',sc:scoreElSal(s,'men')})),
-    ...MEN.B.map(s=>({...s,tier:'B',sc:scoreElSal(s,'men')})),
-    ...MEN.C.map(s=>({...s,tier:'C',sc:scoreElSal(s,'men')})),
-  ].filter(s=>s.name!=='Melvin Ayala'||true).sort((a,b)=>b.sc-a.sc);
-
-  for(const s of ms){
-    if(mp.length>=MTOTAL)break;
-    if(tc[s.tier]>=MCAPS[s.tier])continue;
-    if(s.hg&&usedHG.has(s.hg))continue;
-    mp.push(s);tc[s.tier]++;if(s.hg)usedHG.add(s.hg);
-  }
+  var menBest = optimiseTeam('men', {jitter:0});
+  var womenBest = optimiseTeam('women', {jitter:0});
+  const mp = menBest.team;
+  const wp = womenBest.team;
   mp.forEach(s=>selM.add(s.name));
-
-  // PS: pick the highest-scoring non-R1 REGULAR-FOOTER in the team
-  // (Punta Roca is a right-hander — Regular PS is critical)
-  const mPS=mp
-    .filter(s=>!((s.heat||'').startsWith('R1')))
-    .sort((a,b)=>b.sc-a.sc);
-  // Prefer regular-footer if available, otherwise take top scorer
-  const mPSReg=mPS.filter(s=>s.st==='Regular');
-  psMan=(mPSReg[0]||mPS[0])?.name||null;
-
-  // ── WOMEN ───────────────────────────────────────────────────────────────────────
-  const wUsedHG=new Set(),wtc={A:0,B:0,C:0}, wp=[];
-  const ws=[
-    ...WOMEN.A.map(s=>({...s,tier:'A',sc:scoreElSal(s,'women')})),
-    ...WOMEN.B.map(s=>({...s,tier:'B',sc:scoreElSal(s,'women')})),
-    ...WOMEN.C.map(s=>({...s,tier:'C',sc:scoreElSal(s,'women')})),
-  ].sort((a,b)=>b.sc-a.sc);
-
-  for(const s of ws){
-    if(wp.length>=WTOTAL)break;
-    if(wtc[s.tier]>=WCAPS[s.tier])continue;
-    if(s.hg&&wUsedHG.has(s.hg))continue;
-    wp.push(s);wtc[s.tier]++;if(s.hg)wUsedHG.add(s.hg);
-  }
   wp.forEach(s=>selW.add(s.name));
-
-  // Women PS: highest-scoring seeded (R2) Regular-footer
-  const wPS=wp
-    .filter(s=>!((s.seed||'').includes('Qualify')&&!(s.seed||'').includes('Top 8')))
-    .sort((a,b)=>b.sc-a.sc);
-  const wPSReg=wPS.filter(s=>s.st==='Regular');
-  psWoman=(wPSReg[0]||wPS[0])?.name||null;
+  psMan=choosePowerSurfer(mp,'men');
+  psWoman=choosePowerSurfer(wp,'women');
 
   tOpen.men={A:true,B:true,C:true};tOpen.women={A:true,B:true,C:true};
   renderPicks('men');renderPicks('women');renderPS();renderPSAnalysis();updateBar();
@@ -3517,11 +3573,11 @@ function showAutoModal(mp,wp){
   const old=document.getElementById('app-modal');if(old)old.remove();
   const d=document.createElement('div');d.id='app-modal';d.className='modal-bg';
   const logicText=activeEventId==='rio'
-    ?'Official Rio Fantasy Points 36% · Heat Wins 22% · Rio Form 18% · Avg Heat Score 12% · Max Heat Score 8% · Availability 4%'
-    :'Fantasy Points 30% · Heat Wins 20% · El Salvador Rating 22% · Regular Foot 13% · CT Rank 8% · Round 1 Penalty 4% · Avg Heat Score 3%';
+    ?'Optimised model: official Rio Fantasy points · 2026 heat-win rate · average/max heat scores · CT rank · availability · past elite-event wins'
+    :'Optimised model: Fantasy points · 2026 heat-win rate · El Salvador history · past event wins · CT rank · stance fit · Round 1 penalty';
   const logicNote=activeEventId==='rio'
-    ?'Men: 2 per tier (A, B, C) = 6 picks · Women: 2 per tier = 6 picks · Official Rio heat-clash blocking is active · Top scorer = Power Surfer'
-    :'Men: 2 per tier (A, B, C) = 6 picks · Women: 2 per tier = 6 picks · Heat clashes warned · Top scorer = Power Surfer';
+    ?'Men/Women: 2 per tier (A, B, C) · exact heat and early bracket-path clashes blocked · semifinal-side overlap heavily penalised · best non-R1 scorer = Power Surfer'
+    :'Men/Women: 2 per tier (A, B, C) · exact heat and early bracket-path clashes blocked · semifinal-side overlap heavily penalised · best non-R1 scorer = Power Surfer';
   const row=(s,i)=>{const sc=Math.round(s.sc||0),bar=Math.min(95,sc*.9),c=col(sc);return`<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)"><div style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:var(--ink2);flex-shrink:0">${i+1}</div><div style="flex:1"><div style="font-size:11px;font-weight:600;color:var(--ink)">${s.name}${i===0?' ⚡ PS':''} <span style="font-size:8px;color:var(--ink3);font-family:var(--font-ui)">Tier ${s.tier}</span></div><div style="margin-top:3px;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden"><div style="width:${bar}%;height:100%;background:${c}"></div></div></div><div style="font-size:10px;font-weight:700;color:${c};font-family:var(--font-ui)">${sc}</div></div>`;};
   d.innerHTML=`<div class="modal-box"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div style="font-size:16px;font-weight:700;color:var(--ink)">Auto Pick Results</div><button id="modal-close" class="btn btn-red">Close ✕</button></div><div style="font-size:9px;color:var(--ink3);font-family:var(--font-ui);margin-bottom:12px;padding:8px 10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;line-height:1.6">${logicText}<br><span style="color:var(--ink2)">${logicNote}</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px"><div><div style="font-size:9px;font-family:var(--font-ui);color:var(--ink2);letter-spacing:.1em;margin-bottom:7px;border-bottom:1px solid var(--border);padding-bottom:4px">🏄 MEN (6)</div>${mp.map((s,i)=>row(s,i)).join('')}</div><div><div style="font-size:9px;font-family:var(--font-ui);color:var(--ink2);letter-spacing:.1em;margin-bottom:7px;border-bottom:1px solid var(--border);padding-bottom:4px">🏄 WOMEN (6)</div>${wp.map((s,i)=>row(s,i)).join('')}</div></div></div>`;
   document.body.appendChild(d);
